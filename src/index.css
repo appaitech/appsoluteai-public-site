@@ -1,0 +1,834 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 20% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 20% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142.1 76.2% 36.3%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-gray-100/20 dark:border-gray-700/20;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .gradient-border {
+    @apply relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r 
+           before:from-brand-400/50 before:to-brand-500/50 before:rounded-[inherit] 
+           before:content-[''] before:-z-10;
+  }
+
+  .section-padding {
+    @apply py-24 sm:py-32;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Neon Glow Button */
+  .btn-neon {
+    @apply relative overflow-hidden transition-all duration-300
+           bg-gradient-to-r from-emerald-500 to-teal-500
+           text-white font-medium px-6 py-3 rounded-full
+           shadow-[0_0_15px_rgba(16,185,129,0.5)]
+           hover:shadow-[0_0_25px_rgba(16,185,129,0.8)]
+           hover:scale-105;
+    
+    &::before {
+      @apply content-[''] absolute inset-0 
+             bg-gradient-to-r from-emerald-400 to-teal-400
+             opacity-0 transition-opacity duration-300;
+    }
+    
+    &:hover::before {
+      @apply opacity-30;
+    }
+    
+    &::after {
+      @apply content-[''] absolute inset-0
+             bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCBmaWxsPSJ1cmwoI2cpIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIvPjwvc3ZnPg==')]
+             opacity-0 transition-opacity duration-300;
+    }
+    
+    &:hover::after {
+      @apply opacity-20;
+    }
+  }
+
+  /* Magnetic Button */
+  .btn-magnetic {
+    @apply relative transition-transform duration-200 ease-out;
+    transform-style: preserve-3d;
+    transform: perspective(800px) rotateX(0) rotateY(0);
+    
+    &:hover {
+      @apply shadow-lg;
+    }
+  }
+
+  /* Liquid Button */
+  .btn-liquid {
+    @apply relative overflow-hidden transition-all duration-300
+           bg-gradient-to-r from-emerald-500 to-teal-500
+           text-white font-medium px-6 py-3 rounded-full;
+    
+    &::before {
+      @apply content-[''] absolute -inset-[100%]
+             bg-gradient-to-r from-transparent via-white to-transparent
+             translate-x-[-100%] animate-[shimmer_2s_infinite];
+    }
+  }
+
+  /* Pulse Ring Button */
+  .btn-pulse {
+    @apply relative;
+    
+    &::before,
+    &::after {
+      @apply content-[''] absolute inset-0
+             rounded-[inherit] border-2 border-emerald-500
+             animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite];
+    }
+    
+    &::after {
+      animation-delay: 1s;
+    }
+  }
+
+  /* Particle Explosion Button */
+  .btn-particle {
+    @apply relative overflow-hidden;
+    
+    &::before {
+      @apply content-[''] absolute inset-0
+             bg-gradient-to-r from-emerald-400 to-teal-400
+             opacity-0 transition-opacity duration-300;
+    }
+    
+    &:hover::before {
+      @apply opacity-30;
+    }
+  }
+
+  /* 3D Push Button */
+  .btn-3d {
+    @apply relative transition-all duration-200
+           bg-gradient-to-r from-emerald-500 to-teal-500
+           text-white font-medium px-6 py-3 rounded-xl
+           shadow-[0_6px_0_rgb(5,150,105)]
+           active:translate-y-[6px] active:shadow-none;
+    
+    &::before {
+      @apply content-[''] absolute inset-0
+             bg-gradient-to-r from-white to-transparent
+             opacity-0 transition-opacity duration-200;
+    }
+    
+    &:hover::before {
+      @apply opacity-20;
+    }
+  }
+
+  /* Glitch Button */
+  .btn-glitch {
+    @apply relative overflow-hidden;
+    
+    &::before,
+    &::after {
+      @apply content-[''] absolute inset-0 bg-emerald-500 transition-transform duration-200;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    
+    &::before {
+      @apply left-[2px] text-pink-500;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+    
+    &::after {
+      @apply left-[-2px] text-cyan-500;
+      clip-path: polygon(0 45%, 100% 45%, 100% 100%, 0 100%);
+    }
+    
+    &:hover::before {
+      @apply transform translate-x-[4px];
+    }
+    
+    &:hover::after {
+      @apply transform translate-x-[-4px];
+    }
+  }
+
+  /* Add this new professional button base style */
+  .btn-base {
+    @apply px-6 py-3 rounded-lg text-white font-medium 
+           transition-all duration-200 transform
+           hover:scale-[1.02] active:scale-[0.98]
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Dark mode enhancements */
+  .dark .btn-base {
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+    
+    &:hover {
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.8),
+                  0 0 60px rgba(16, 185, 129, 0.4),
+                  0 0 100px rgba(16, 185, 129, 0.2);
+    }
+  }
+
+  /* Add these keyframes for the glow pulse */
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.6),
+                  0 0 60px rgba(16, 185, 129, 0.3),
+                  0 0 100px rgba(16, 185, 129, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.8),
+                  0 0 80px rgba(16, 185, 129, 0.4),
+                  0 0 120px rgba(16, 185, 129, 0.2);
+    }
+  }
+
+  .prose-custom {
+    @apply prose
+           prose-headings:text-gray-900 dark:prose-headings:text-white
+           prose-p:text-gray-600 dark:prose-p:text-gray-300
+           prose-strong:text-gray-900 dark:prose-strong:text-white
+           prose-a:text-emerald-600 dark:prose-a:text-emerald-400
+           prose-code:text-emerald-600 dark:prose-code:text-emerald-400
+           prose-pre:bg-gray-50 dark:prose-pre:bg-gray-800
+           prose-blockquote:border-emerald-500
+           prose-blockquote:bg-emerald-50 dark:prose-blockquote:bg-emerald-900/20;
+  }
+}
+
+/* Enhanced Animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.animate-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-500/50 rounded-full hover:bg-brand-500;
+}
+
+/* Typography Enhancements */
+.prose-custom {
+  @apply prose-headings:text-gray-900 dark:prose-headings:text-gray-100
+         prose-p:text-gray-600 dark:prose-p:text-gray-300
+         prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+         prose-a:text-brand-600 dark:prose-a:text-brand-400
+         prose-code:text-brand-600 dark:prose-code:text-brand-400
+         prose-pre:bg-gray-50 dark:prose-pre:bg-gray-800/50
+         prose-blockquote:border-brand-500 dark:prose-blockquote:border-brand-400
+         prose-blockquote:bg-brand-50 dark:prose-blockquote:bg-brand-900/20;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Focus Styles */
+*:focus {
+  outline: none;
+  @apply ring-2 ring-emerald-500 ring-opacity-50;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-emerald-600;
+}
+
+/* Form Styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 text-emerald-500 border-gray-300 rounded focus:ring-emerald-500;
+}
+
+textarea {
+  @apply resize-none;
+}
+
+.form-section {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.form-section:hover {
+  @apply shadow-md;
+}
+
+/* Enhanced Shadows */
+.shadow-gradient {
+  box-shadow: 
+    0 10px 15px -3px rgba(4, 120, 87, 0.1),
+    0 4px 6px -2px rgba(4, 120, 87, 0.05),
+    inset 0 -2px 6px -2px rgba(4, 120, 87, 0.1);
+}
+
+.shadow-depth {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+              0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Enhanced Hover Effects */
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+              0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Add a subtle active state */
+.hover-lift:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+
+  .form-section {
+    @apply p-3;
+  }
+
+  /* Improve touch targets */
+  button, 
+  input[type="checkbox"],
+  select {
+    @apply min-h-[44px];
+  }
+
+  /* Better spacing for mobile */
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    @apply my-6;
+  }
+
+  /* Tooltip positioning for mobile */
+  .tooltip-mobile {
+    @apply fixed inset-x-4 bottom-4 top-auto;
+    max-width: calc(100vw - 32px);
+  }
+}
+
+/* Improved Mobile Form Styles */
+@media (max-width: 640px) {
+  input, select, textarea {
+    @apply text-base; /* Prevent zoom on iOS */
+  }
+
+  .modal-mobile {
+    @apply fixed inset-0 m-0 rounded-none max-h-screen;
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+}
+
+/* Fix for iOS height issues */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Prevent pull-to-refresh on iOS */
+html {
+  overscroll-behavior-y: none;
+}
+
+/* Add these utility classes */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.prose-custom {
+  @apply prose-h1:text-3xl 
+         prose-h1:font-bold 
+         prose-h2:text-2xl 
+         prose-h2:font-bold 
+         prose-h3:text-xl 
+         prose-h3:font-semibold
+         prose-p:text-gray-600 
+         prose-p:leading-relaxed
+         prose-li:text-gray-600
+         prose-strong:text-gray-900
+         prose-strong:font-semibold
+         prose-blockquote:border-l-emerald-500
+         prose-blockquote:bg-emerald-50
+         prose-blockquote:not-italic
+         prose-pre:bg-gray-50
+         prose-pre:border
+         prose-pre:border-gray-200
+         prose-img:rounded-xl
+         prose-img:shadow-lg;
+}
+
+/* Add to your existing CSS */
+.delay-150 {
+  animation-delay: 150ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Add these new animations */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Enhance the existing animations */
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Add to your existing CSS */
+:root {
+  --background: 255 255 255;
+  --foreground: 15 23 42;
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+}
+
+/* Dark mode transitions */
+.dark-mode-transition {
+  @apply transition-all duration-300;
+}
+
+/* Dark mode specific styles */
+.dark {
+  @apply bg-gray-900;
+
+  /* Enhanced dark mode text */
+  h1, h2, h3, h4 {
+    @apply text-white;
+  }
+
+  p {
+    @apply text-gray-300;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-gray-800 border-gray-700;
+  }
+
+  /* Form elements */
+  input, textarea, select {
+    @apply bg-gray-700 border-gray-600 text-white;
+    &::placeholder {
+      @apply text-gray-400;
+    }
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-emerald-600 hover:bg-emerald-700;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-700 hover:bg-gray-600;
+  }
+
+  /* Glass effect */
+  .glass-effect {
+    @apply bg-gray-900/80 border-gray-800;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-emerald-400 to-teal-400;
+  }
+
+  /* Shadow effects */
+  .shadow-depth {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+                0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Hover effects */
+  .hover-lift:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Section transitions */
+  .section-transition::before {
+    @apply bg-gradient-to-b from-transparent to-gray-900/10;
+  }
+}
+
+/* Add to your existing CSS */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Add these new button animation classes */
+.animate-border-glow {
+  @apply relative;
+  
+  &::before {
+    @apply absolute inset-0;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      theme('colors.emerald.400'),
+      theme('colors.teal.400'),
+      theme('colors.emerald.400')
+    );
+    background-size: 200% 100%;
+    animation: border-glow 3s linear infinite;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
+    border-radius: inherit;
+  }
+}
+
+.animate-button-glow {
+  @apply relative overflow-hidden;
+  
+  &::before {
+    @apply absolute inset-0 opacity-0;
+    content: '';
+    background: radial-gradient(
+      circle at center,
+      theme('colors.emerald.400') 0%,
+      transparent 70%
+    );
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    @apply opacity-20;
+  }
+}
+
+.gradient-border-button {
+  @apply relative;
+  background: linear-gradient(
+    90deg,
+    theme('colors.emerald.500'),
+    theme('colors.teal.500'),
+    theme('colors.emerald.500')
+  );
+  background-size: 200% 100%;
+  animation: gradient-shift 3s linear infinite;
+  
+  &::before {
+    @apply absolute inset-[2px] bg-white dark:bg-gray-900 rounded-[inherit] transition-colors duration-200;
+    content: '';
+  }
+  
+  &:hover::before {
+    @apply bg-opacity-95 dark:bg-opacity-95;
+  }
+  
+  span {
+    @apply relative z-10;
+  }
+}
+
+/* Add these keyframe animations */
+@keyframes border-glow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+@keyframes button-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Enhanced hover effects */
+.hover-glow {
+  @apply transition-all duration-300;
+  
+  &:hover {
+    @apply shadow-[0_0_15px_rgba(16,185,129,0.3)];
+    transform: translateY(-2px);
+  }
+}
+
+/* Gradient text animation */
+.animate-gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r;
+  background-size: 200% 100%;
+  animation: gradient-shift 3s linear infinite;
+  
+  &.primary {
+    @apply from-emerald-500 via-teal-500 to-emerald-500;
+  }
+  
+  &.secondary {
+    @apply from-purple-500 via-pink-500 to-purple-500;
+  }
+}
+
+/* Add a subtle shimmer effect */
+.shimmer {
+  @apply relative overflow-hidden;
+  
+  &::before {
+    @apply absolute inset-0;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Add these keyframe animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes particle-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Particle animation helper */
+.particle {
+  @apply pointer-events-none absolute bg-white rounded-full;
+  width: 4px;
+  height: 4px;
+  animation: particle-burst 0.5s ease-out forwards;
+}
+
+/* Add hover state animations */
+.hover-glow {
+  @apply transition-all duration-300;
+  
+  &:hover {
+    @apply shadow-[0_0_20px_rgba(16,185,129,0.6)]
+           -translate-y-1;
+  }
+}
+
+/* Add active state animations */
+.active-press {
+  @apply transition-all duration-100;
+  
+  &:active {
+    @apply transform scale-95
+           shadow-[0_0_10px_rgba(16,185,129,0.4)];
+  }
+}
+
+/* Add smooth dark mode transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+.dark-mode-transition {
+  @apply transition-all duration-300;
+}
+
+/* Enhanced dark mode styles */
+.dark {
+  @apply bg-gray-900;
+
+  /* Enhanced dark mode text */
+  h1, h2, h3, h4 {
+    @apply text-white;
+  }
+
+  p {
+    @apply text-gray-300;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-gray-800 border-gray-700;
+  }
+
+  /* Form elements */
+  input, textarea, select {
+    @apply bg-gray-700 border-gray-600 text-white;
+    &::placeholder {
+      @apply text-gray-400;
+    }
+  }
+}
