@@ -20,8 +20,21 @@
     <link rel="canonical" href="https://appsnap.dev" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="AppSnap Development Team" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <!-- Vercel Analytics (only loads in production) -->
+    <script>
+      if (window.location.hostname !== 'localhost') {
+        const insights = document.createElement('script');
+        insights.src = '/_vercel/insights/script.js';
+        insights.type = 'module';
+        
+        const speed = document.createElement('script');
+        speed.src = '/_vercel/speed-insights/script.js';
+        speed.type = 'module';
+        
+        document.head.appendChild(insights);
+        document.head.appendChild(speed);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -6,7 +6,7 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    exclude: ['lucide-react', '/_vercel/insights/script.js', '/_vercel/speed-insights/script.js']
   },
   resolve: {
     alias: {
@@ -14,7 +14,7 @@ export default defineConfig({
     },
   },
   css: {
-    postcss: './postcss.config.js',
+    postcss: './postcss.config.cjs',
   },
   build: {
     outDir: 'dist',
