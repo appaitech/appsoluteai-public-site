@@ -522,15 +522,33 @@ html {
   }
 }
 
-/* Add to your existing CSS */
+/* Update your CSS variables */
 :root {
-  --background: 255 255 255;
-  --foreground: 15 23 42;
+  /* Light mode variables */
+  --background-color: #ffffff;
+  --text-color: #1a1a1a;
+  --primary-color: #646cff;
+  --secondary-color: #535bf2;
 }
 
+:root.dark {
+  /* Dark mode variables */
+  --background-color: #242424;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --primary-color: #747bff;
+  --secondary-color: #646cff;
+}
+
+/* Ensure smooth transitions */
 body {
-  background-color: rgb(var(--background));
-  color: rgb(var(--foreground));
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add transitions to other elements that change with theme */
+a, button, input, div {
+  transition: all 0.3s ease;
 }
 
 /* Dark mode transitions */
@@ -831,4 +849,225 @@ body {
       @apply text-gray-400;
     }
   }
+}
+
+/* Add these new navbar styles */
+.navbar {
+  @apply fixed top-0 left-0 right-0 z-50;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode navbar styles */
+.dark .navbar {
+  background: rgba(17, 24, 39, 0.8);
+  border-bottom: 1px solid rgba(55, 65, 81, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar item styles */
+.nav-item {
+  @apply px-4 py-2 rounded-lg transition-all duration-200
+         text-gray-700 hover:text-emerald-600
+         dark:text-gray-300 dark:hover:text-emerald-400;
+}
+
+/* Active navbar item */
+.nav-item.active {
+  @apply bg-emerald-50 text-emerald-600
+         dark:bg-emerald-900/30 dark:text-emerald-400;
+}
+
+/* Navbar button styles */
+.nav-button {
+  @apply px-4 py-2 rounded-lg transition-all duration-200
+         bg-emerald-600 text-white hover:bg-emerald-700
+         dark:bg-emerald-500 dark:hover:bg-emerald-600
+         shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30;
+}
+
+/* Add these professional enhancements */
+
+/* Enhanced Container */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Professional Section Styling */
+.section {
+  @apply py-16 sm:py-24 relative;
+}
+
+.section-inner {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Enhanced Glass Effect */
+.glass-panel {
+  @apply bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl
+         border border-gray-200/20 dark:border-gray-700/20
+         shadow-xl dark:shadow-2xl shadow-gray-200/50 dark:shadow-black/50;
+}
+
+/* Professional Card Styling */
+.card-pro {
+  @apply rounded-2xl p-6 sm:p-8
+         bg-white/80 dark:bg-gray-800/80
+         backdrop-blur-lg
+         border border-gray-100 dark:border-gray-700/50
+         shadow-xl shadow-gray-200/50 dark:shadow-black/30
+         transition-all duration-300
+         hover:shadow-2xl hover:shadow-emerald-500/10
+         hover:border-emerald-500/20;
+}
+
+/* Enhanced Typography */
+.heading-1 {
+  @apply text-4xl sm:text-5xl lg:text-6xl font-bold
+         bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300
+         bg-clip-text text-transparent
+         leading-tight tracking-tight;
+}
+
+.heading-2 {
+  @apply text-3xl sm:text-4xl font-bold
+         text-gray-900 dark:text-white
+         leading-tight;
+}
+
+.subtitle {
+  @apply text-lg sm:text-xl
+         text-gray-600 dark:text-gray-300
+         leading-relaxed;
+}
+
+/* Professional Button Styles */
+.btn-pro {
+  @apply px-6 py-3 rounded-xl
+         font-medium text-base
+         transition-all duration-300
+         transform hover:scale-[1.02] active:scale-[0.98]
+         disabled:opacity-50 disabled:cursor-not-allowed
+         focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-pro-primary {
+  @apply btn-pro
+         bg-gradient-to-r from-emerald-600 to-teal-600
+         hover:from-emerald-700 hover:to-teal-700
+         text-white
+         shadow-lg shadow-emerald-500/25
+         hover:shadow-xl hover:shadow-emerald-500/30
+         focus:ring-emerald-500;
+}
+
+.btn-pro-secondary {
+  @apply btn-pro
+         bg-gray-100 dark:bg-gray-800
+         hover:bg-gray-200 dark:hover:bg-gray-700
+         text-gray-900 dark:text-white
+         border border-gray-200 dark:border-gray-700
+         focus:ring-gray-500;
+}
+
+/* Enhanced Navbar */
+.navbar-pro {
+  @apply fixed top-0 left-0 right-0 z-50
+         bg-white/80 dark:bg-gray-900/80
+         backdrop-blur-xl
+         border-b border-gray-200/20 dark:border-gray-700/20
+         shadow-lg shadow-gray-200/20 dark:shadow-black/20;
+}
+
+/* Professional Form Styling */
+.input-pro {
+  @apply w-full px-4 py-3 rounded-xl
+         bg-white dark:bg-gray-800
+         border border-gray-200 dark:border-gray-700
+         text-gray-900 dark:text-white
+         placeholder-gray-400 dark:placeholder-gray-500
+         focus:ring-2 focus:ring-emerald-500 focus:border-transparent
+         transition-all duration-200;
+}
+
+/* Grid Layouts */
+.grid-pro {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+/* Professional List Styling */
+.list-pro {
+  @apply space-y-4;
+}
+
+.list-pro-item {
+  @apply flex items-start space-x-3
+         p-4 rounded-xl
+         bg-gray-50 dark:bg-gray-800/50
+         border border-gray-100 dark:border-gray-700/50;
+}
+
+/* Enhanced Animations */
+@keyframes float-pro {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float-pro {
+  animation: float-pro 3s ease-in-out infinite;
+}
+
+/* Professional Gradients */
+.gradient-pro-bg {
+  @apply bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50
+         dark:from-gray-900 dark:via-gray-800 dark:to-gray-900;
+}
+
+.gradient-pro-text {
+  @apply bg-gradient-to-r from-emerald-600 to-teal-600
+         dark:from-emerald-400 dark:to-teal-400
+         bg-clip-text text-transparent;
+}
+
+/* Professional Dividers */
+.divider-pro {
+  @apply h-px w-full my-8
+         bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Enhanced card hover effect */
+.card-pro {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-pro:hover {
+  transform: translateY(-5px);
+}
+
+/* Gradient shimmer effect */
+.gradient-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(16, 185, 129, 0.1) 0%,
+    rgba(16, 185, 129, 0.2) 25%,
+    rgba(16, 185, 129, 0.1) 50%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

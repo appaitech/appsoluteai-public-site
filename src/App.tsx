@@ -30,6 +30,8 @@ import { ProjectCalculatorPage } from './pages/ProjectCalculator';
 import { PRDFormPage } from './pages/PRDFormPage';
 import { NotFound } from './pages/NotFound';
 import { HelmetProvider } from 'react-helmet-async';
+import { RegionalPricing } from './components/ui/RegionalPricing';
+import { InnovationCards } from './components/ui/InnovationCards';
 
 interface FormData {
   name: string;
@@ -197,12 +199,17 @@ export function App() {
 
   const [showHearts, setShowHearts] = useState(false);
 
-  const [isDark] = useDarkMode();
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
+  // Update theme class when theme changes
   useEffect(() => {
-    // Add dark mode class to html element
-    document.documentElement.classList.toggle('dark', isDark);
-  }, [isDark]);
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
 
   const toggleTooltip = (fieldId: string) => {
     setTooltips(prev => ({
@@ -301,7 +308,7 @@ export function App() {
     {
       name: "Sarah Johnson",
       role: "CEO, TechStart",
-      content: "AppSnap delivered our MVP in just 2 weeks. The quality and speed were exceptional!",
+      content: "Idea2RealApp delivered our MVP in just 2 weeks. The quality and speed were exceptional!",
       rating: 5
     },
     {
@@ -325,7 +332,7 @@ export function App() {
           <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
             <Seo />
             <CommandMenu />
-            <Header />
+            <Header theme={theme} toggleTheme={toggleTheme} />
             <ScrollProgress />
 
             <Routes>
@@ -424,104 +431,121 @@ export function App() {
                     </div>
 
                     {/* Content */}
-                    <div className="container mx-auto px-6 relative">
-                      {/* Hero content with enhanced animations */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-center max-w-4xl mx-auto"
-                      >
-                        <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in group
-                                       text-gray-900 dark:text-white drop-shadow-sm relative">
-                          <span className="relative inline-block group-hover:scale-[1.02] transition-transform duration-300">
-                            Transform Your Ideas
-                            {/* Glitch effect on hover */}
-                            <motion.span
-                              className="absolute inset-0 text-emerald-500 opacity-0 -z-10"
-                              animate={{ 
-                                x: [-2, 2, -2],
-                                opacity: [0, 0.3, 0],
-                                scale: [1, 1.02, 1]
-                              }}
-                              transition={{ 
-                                duration: 0.3,
-                                repeat: Infinity,
-                                repeatType: "reverse"
-                              }}
-                            >
-                              Transform Your Ideas
-                            </motion.span>
+                    <div className="container mx-auto px-6 pt-32 pb-24 relative z-10">
+                      <div className="text-center max-w-4xl mx-auto">
+                        <motion.h1 
+                          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8 }}
+                        >
+                          <span className="block mb-2">Turn Your Ideas Into</span>
+                          <span className="bg-gradient-to-r from-emerald-500 to-teal-500 
+                                          dark:from-emerald-400 dark:to-teal-400 
+                                          bg-clip-text text-transparent">
+                            Reality
                           </span>
-                          <span className="block mt-2 relative">
-                            <span className="bg-clip-text text-transparent 
-                                            bg-gradient-to-r from-emerald-500 to-teal-500
-                                            dark:from-emerald-400 dark:to-teal-400
-                                            relative z-10 group-hover:scale-[1.02] transition-transform duration-300
-                                            inline-block">
-                              Reality
-                            </span>
-                            {/* Glow effect on hover */}
-                            <motion.div
-                              className="absolute inset-0 bg-emerald-500/20 blur-xl rounded-full -z-10
-                                         opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                              animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0, 0.5, 0]
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                repeatType: "reverse"
-                              }}
-                            />
-                          </span>
-                        </h1>
-                        <p className="text-xl md:text-2xl mb-8 text-gray-800 dark:text-gray-200 max-w-2xl mx-auto 
-                                      group relative hover:scale-[1.01] transition-transform duration-300">
-                          <span className="relative z-10">
-                            An App in a Snap™ - Rapid Development Solutions for Modern Businesses
-                          </span>
-                          {/* Tech particles that appear on hover */}
-                          <motion.div
-                            className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100"
-                            initial={false}
-                          >
-                            {[...Array(10)].map((_, i) => (
+                        </motion.h1>
+
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                          <div className="flex flex-col items-center justify-center mb-12">
+                            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
                               <motion.div
-                                key={i}
-                                className="absolute w-1 h-1 bg-emerald-400/30"
-                                initial={{ 
-                                  x: "50%", 
-                                  y: "50%",
-                                  scale: 0 
-                                }}
-                                animate={{ 
-                                  x: `${Math.random() * 100}%`,
-                                  y: `${Math.random() * 100}%`,
-                                  scale: [0, 1, 0]
-                                }}
-                                transition={{
-                                  duration: 1 + Math.random(),
-                                  repeat: Infinity,
-                                  repeatType: "loop",
-                                  delay: Math.random() * 0.5
-                                }}
-                              />
-                            ))}
-                          </motion.div>
-                        </p>
-                        <div className="mt-8 flex items-center justify-center relative">
+                                className="group relative px-2"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                              >
+                                <span className="text-2xl md:text-3xl font-light tracking-wide
+                                               text-white dark:text-white/90">
+                                  Dream it
+                                </span>
+                                <motion.div 
+                                  className="absolute bottom-0 left-0 h-[2px] bg-white 
+                                             w-0 group-hover:w-full transition-all duration-500 ease-out
+                                             shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
+                                />
+                              </motion.div>
+
+                              <span className="text-white/60">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                              </span>
+
+                              <motion.div
+                                className="group relative px-2"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                              >
+                                <span className="text-2xl md:text-3xl font-light tracking-wide
+                                               text-white dark:text-white/90">
+                                  Prototype it
+                                </span>
+                                <motion.div 
+                                  className="absolute bottom-0 left-0 h-[2px] bg-white 
+                                             w-0 group-hover:w-full transition-all duration-500 ease-out
+                                             shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
+                                />
+                              </motion.div>
+
+                              <span className="text-white/60">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                              </span>
+
+                              <motion.div
+                                className="group relative px-2"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                              >
+                                <span className="text-2xl md:text-3xl font-light tracking-wide
+                                               text-white dark:text-white/90">
+                                  Launch it
+                                </span>
+                                <motion.div 
+                                  className="absolute bottom-0 left-0 h-[2px] bg-white 
+                                             w-0 group-hover:w-full transition-all duration-500 ease-out
+                                             shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
+                                />
+                              </motion.div>
+                            </div>
+
+                            <motion.div 
+                              className="mt-6 text-base md:text-lg text-white/80 dark:text-white/70 tracking-wider font-light"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.4 }}
+                            >
+                              Where innovation meets execution
+                            </motion.div>
+                          </div>
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: 0.4 }}
+                          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                        >
                           <Link 
-                            to="/prd"
-                            className="btn-base flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700"
+                            to="/prd" 
+                            className="btn-pro-primary px-8 py-4 text-lg w-full sm:w-auto"
                           >
-                            <FileText className="w-5 h-5" />
-                            <span>Get Started</span>
+                            Start Your Project
                           </Link>
-                          {showHearts && <HeartsAnimation />}
-                        </div>
-                      </motion.div>
+                          <Link 
+                            to="#packages" 
+                            className="btn-pro-secondary px-8 py-4 text-lg w-full sm:w-auto"
+                          >
+                            View Packages
+                          </Link>
+                        </motion.div>
+                      </div>
                     </div>
                   </section>
 
@@ -613,169 +637,13 @@ export function App() {
                   </section>
 
                   {/* Packages Section */}
-                  <section id="packages" className="py-24 relative overflow-hidden">
-                    <div className="absolute inset-0">
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-50 
-                                      dark:from-emerald-900/40 dark:via-emerald-800/20 dark:to-gray-900" />
-                      
-                      {/* Animated mesh gradient */}
-                      <div className="absolute inset-0 opacity-30">
-                        <motion.div
-                          animate={{
-                            backgroundPosition: ['0% 0%', '100% 100%'],
-                          }}
-                          transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                            repeatType: "reverse",
-                            ease: "linear",
-                          }}
-                          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.1)_0%,rgba(20,184,166,0.1)_25%,rgba(6,182,212,0.1)_50%,rgba(16,185,129,0.1)_75%,rgba(20,184,166,0.1)_100%)]"
-                          style={{
-                            backgroundSize: '400% 400%',
-                          }}
-                        />
+                  <section id="packages" className="section gradient-pro-bg">
+                    <div className="container">
+                      <div className="text-center mb-12">
+                        <h2 className="heading-2 mb-4">Our Packages</h2>
+                        <p className="subtitle">Choose the perfect plan for your project</p>
                       </div>
-                    </div>
-
-                    <div className="container mx-auto px-6">
-                      <AnimatedHeading 
-                        variant="glitch"
-                        className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
-                      >
-                        Our Packages
-                      </AnimatedHeading>
-                      <div className="grid md:grid-cols-3 gap-8">
-                        {/* Starter Package */}
-                        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 
-                                           shadow-lg hover:shadow-xl transition duration-300 
-                                           border border-emerald-100 dark:border-emerald-800">
-                          <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
-                            Rapid MVP
-                          </h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-6">
-                            Perfect for validating your app idea quickly and efficiently
-                          </p>
-                          <ul className="space-y-3 mb-8">
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Core feature development</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Basic user authentication</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Essential UI/UX design</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">2-week delivery timeline</span>
-                            </li>
-                          </ul>
-                          <div className="mt-6">
-                            <span className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
-                              $10,000
-                            </span>
-                            <span className="text-gray-500 dark:text-gray-400 ml-2">/ project</span>
-                          </div>
-                          <button className="btn-base w-full mt-6">
-                            Get Started
-                          </button>
-                        </div>
-
-                        {/* Pro Package */}
-                        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 
-                                           shadow-lg hover:shadow-xl transition duration-300 
-                                           border border-emerald-100 dark:border-emerald-800 relative">
-                          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-4 py-1 rounded-full text-sm">
-                            Most Popular
-                          </div>
-                          <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
-                            Professional Launch
-                          </h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-6">
-                            Complete solution for serious businesses ready to scale
-                          </p>
-                          <ul className="space-y-3 mb-8">
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Full feature development</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Advanced authentication & security</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Premium UI/UX with animations</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">API integration & documentation</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">4-6 week delivery timeline</span>
-                            </li>
-                          </ul>
-                          <div className="mt-6">
-                            <span className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
-                              $20,000
-                            </span>
-                            <span className="text-gray-500 dark:text-gray-400 ml-2">/ project</span>
-                          </div>
-                          <button className="btn-base w-full mt-6">
-                            Choose Pro
-                          </button>
-                        </div>
-
-                        {/* Enterprise Package */}
-                        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 
-                                           shadow-lg hover:shadow-xl transition duration-300 
-                                           border border-emerald-100 dark:border-emerald-800">
-                          <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
-                            Enterprise Scale
-                          </h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-6">
-                            Custom solutions for large organizations with complex needs
-                          </p>
-                          <ul className="space-y-3 mb-8">
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Custom architecture & scaling</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Enterprise-grade security</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Dedicated project manager</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">24/7 priority support</span>
-                            </li>
-                            <li className="flex items-start space-x-2">
-                              <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                              <span className="text-gray-600 dark:text-gray-300">Custom timeline & roadmap</span>
-                            </li>
-                          </ul>
-                          <div className="mt-6">
-                            <span className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
-                              Contact Us
-                            </span>
-                            <span className="text-gray-500 dark:text-gray-400 block mt-1 text-sm">
-                              For custom enterprise pricing
-                            </span>
-                          </div>
-                          <button className="btn-base w-full mt-6">
-                            Contact Sales
-                          </button>
-                        </div>
-                      </div>
+                      <RegionalPricing />
                     </div>
                   </section>
 
@@ -951,6 +819,17 @@ export function App() {
                           </div>
                         </div>
                       </motion.div>
+                    </div>
+                  </section>
+
+                  {/* Accelerating Digital Innovation Section */}
+                  <section className="section gradient-pro-bg">
+                    <div className="container">
+                      <div className="text-center mb-12">
+                        <h2 className="heading-2 mb-4">Accelerating Digital Innovation</h2>
+                        <p className="subtitle">Transforming ideas into powerful digital solutions</p>
+                      </div>
+                      <InnovationCards />
                     </div>
                   </section>
                 </>
