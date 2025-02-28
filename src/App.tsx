@@ -33,6 +33,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { RegionalPricing } from './components/ui/RegionalPricing';
 import { InnovationCards } from './components/ui/InnovationCards';
 import { About } from './pages/About';
+import { Packages } from './pages/Packages';
+import { Footer } from './components/layout/Footer';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { Terms } from './pages/Terms';
 
 interface FormData {
   name: string;
@@ -539,12 +543,7 @@ export function App() {
                           >
                             Start Your Project
                           </Link>
-                          <Link 
-                            to="#packages" 
-                            className="btn-pro-secondary px-8 py-4 text-lg w-full sm:w-auto"
-                          >
-                            View Packages
-                          </Link>
+                      
                         </motion.div>
                       </div>
                     </div>
@@ -735,26 +734,19 @@ export function App() {
                       </motion.div>
                     </div>
                   </section>
-
-                  {/* Accelerating Digital Innovation Section */}
-                  <section className="section gradient-pro-bg">
-                    <div className="container">
-                      <div className="text-center mb-12">
-                        <h2 className="heading-2 mb-4">Accelerating Digital Innovation</h2>
-                        <p className="subtitle">Transforming ideas into powerful digital solutions</p>
-                      </div>
-                      <InnovationCards />
-                    </div>
-                  </section>
                 </>
               } />
+              <Route path="/packages" element={<Packages />} />
               <Route path="/calculator" element={<ProjectCalculatorPage />} />
               <Route path="/prd" element={<PRDFormPage />} />
               <Route path="/about" element={<About />} />
               <Route path="/404" element={<NotFound />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<Navigate to="/404" replace />} />
             </Routes>
 
+            <Footer />
             <ChatBot />
             <Analytics />
           </div>

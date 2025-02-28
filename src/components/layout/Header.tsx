@@ -24,8 +24,8 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
 
   const navigationItems = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '#about' },
-    { name: 'Packages', href: '#packages' },
+    { name: 'About', href: '/about' },
+    { name: 'Packages', href: '/packages' },
     { 
       name: 'PRD Form', 
       href: '/prd', 

@@ -1,133 +1,132 @@
 import { motion } from 'framer-motion';
+import { InnovationCards } from '@/components/ui/InnovationCards';
+import { ArrowRight } from 'lucide-react';
 
 export function About() {
   return (
     <div className="pt-20">
-      {/* About Section */}
-      <section className="py-20 relative overflow-hidden">
-        {/* Background Effects */}
+      {/* Hero Section */}
+      <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-emerald-50/50 to-white 
-                          dark:from-gray-900 dark:via-emerald-900/10 dark:to-gray-900" />
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-white/50 
+                          dark:from-emerald-900/20 dark:via-gray-900 dark:to-gray-900" />
+          {/* Animated background elements */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-900/20 
+                         rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 dark:bg-teal-900/20 
+                         rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float delay-300" />
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
-            {/* Vision Statement */}
+            {/* Main Heading */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-24"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-600 to-teal-500 
-                             bg-clip-text text-transparent">
-                Our Vision
-              </h2>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                Empowering startups and businesses to transform their digital dreams into reality, 
-                one innovative solution at a time.
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="inline-block mb-6 p-2 px-4 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20
+                           border border-emerald-500/20"
+              >
+                <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                  Welcome to Idea2RealApp
+                </span>
+              </motion.div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 
+                            bg-gradient-to-r from-emerald-600 to-teal-500 
+                            dark:from-emerald-400 dark:to-teal-300
+                            bg-clip-text text-transparent">
+                Accelerating Digital Innovation
+              </h1>
+
+              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
+                Transforming ideas into powerful digital solutions
               </p>
             </motion.div>
 
-            {/* Mission & Values Grid */}
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
-              {/* Mission */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm 
-                           rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50
-                           shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
-                  Our Mission
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  To provide accessible, high-quality software development solutions that help 
-                  businesses scale and succeed in the digital age. We believe in rapid delivery 
-                  without compromising on quality.
-                </p>
-              </motion.div>
-
-              {/* Values */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm 
-                           rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50
-                           shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
-                  Our Values
-                </h3>
-                <ul className="space-y-3">
-                  {[
-                    "Innovation at the core of everything we do",
-                    "Transparency and open communication",
-                    "Quality-driven development",
-                    "Client success is our success"
-                  ].map((value, index) => (
-                    <li key={index} className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
-                      <svg className="w-5 h-5 text-emerald-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span>{value}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+            {/* Innovation Cards with enhanced spacing */}
+            <div className="mb-32">
+              <InnovationCards />
             </div>
 
-            {/* Why Choose Us */}
+            {/* Process Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="text-center mb-32"
             >
-              <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-                Why Choose Us
+              <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
+                Our Development Process
               </h2>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                 {[
-                  {
-                    title: "Startup Focused",
-                    description: "We understand the unique challenges startups face and provide solutions that scale."
-                  },
-                  {
-                    title: "Rapid Development",
-                    description: "Quick turnaround without compromising on quality or reliability."
-                  },
-                  {
-                    title: "Growth Partners",
-                    description: "We're not just developers - we're partners in your growth journey."
-                  }
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm 
-                               rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50
-                               shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {item.description}
-                    </p>
-                  </motion.div>
+                  { step: "1", title: "Dream", desc: "Share your vision" },
+                  { step: "2", title: "Prototype", desc: "See it come to life" },
+                  { step: "3", title: "Launch", desc: "Go to market" }
+                ].map((phase, index) => (
+                  <div key={phase.step} className="flex items-center gap-4">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.2 }}
+                      className="relative"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20
+                                    flex items-center justify-center text-2xl font-bold
+                                    text-emerald-600 dark:text-emerald-400">
+                        {phase.step}
+                      </div>
+                      <div className="mt-4">
+                        <h3 className="font-bold text-gray-900 dark:text-white">
+                          {phase.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {phase.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                    {index < 2 && (
+                      <ArrowRight className="hidden md:block w-8 h-8 text-emerald-500/50" />
+                    )}
+                  </div>
                 ))}
+              </div>
+            </motion.div>
+
+            {/* Call to Action */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <div className="p-8 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10
+                             dark:from-emerald-900/50 dark:to-teal-900/50 backdrop-blur-sm
+                             border border-emerald-500/20">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                  Ready to Start Your Project?
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  Let's transform your idea into reality together
+                </p>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-pro-primary"
+                  onClick={() => window.location.href = '/prd'}
+                >
+                  Start Your Journey
+                </motion.button>
               </div>
             </motion.div>
           </div>
