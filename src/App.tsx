@@ -32,6 +32,7 @@ import { NotFound } from './pages/NotFound';
 import { HelmetProvider } from 'react-helmet-async';
 import { RegionalPricing } from './components/ui/RegionalPricing';
 import { InnovationCards } from './components/ui/InnovationCards';
+import { About } from './pages/About';
 
 interface FormData {
   name: string;
@@ -549,93 +550,6 @@ export function App() {
                     </div>
                   </section>
 
-                  {/* About Section - First section after hero */}
-                  <section id="about" className="py-20 relative overflow-hidden">
-                    {/* Background Effects */}
-                    <div className="absolute inset-0">
-                      <div className="absolute inset-0 bg-gradient-to-b from-white via-emerald-50/50 to-white 
-                                      dark:from-gray-900 dark:via-emerald-900/10 dark:to-gray-900" />
-                      
-                      {/* Animated circles */}
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          rotate: [0, 180, 360],
-                        }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        className="absolute -right-64 -top-64 w-[500px] h-[500px] rounded-full 
-                                   bg-gradient-to-br from-emerald-200/20 to-teal-200/20 dark:from-emerald-900/20 
-                                   dark:to-teal-900/20 blur-3xl"
-                      />
-                      <motion.div
-                        animate={{
-                          scale: [1.2, 1, 1.2],
-                          rotate: [360, 180, 0],
-                        }}
-                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                        className="absolute -left-64 -bottom-64 w-[500px] h-[500px] rounded-full 
-                                   bg-gradient-to-br from-teal-200/20 to-emerald-200/20 dark:from-teal-900/20 
-                                   dark:to-emerald-900/20 blur-3xl"
-                      />
-                    </div>
-
-                    <div className="container mx-auto px-6 relative">
-                      <AnimatedHeading 
-                        variant="glitch"
-                        className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-16"
-                      >
-                        Accelerating Digital Innovation
-                      </AnimatedHeading>
-                      
-                      <div className="grid md:grid-cols-3 gap-12">
-                        {[
-                          {
-                            icon: <Clock className="w-12 h-12" />,
-                            title: "Lightning Fast Delivery",
-                            description: "From concept to deployment in record time"
-                          },
-                          {
-                            icon: <Code className="w-12 h-12" />,
-                            title: "Cutting-Edge Tech",
-                            description: "Built with the latest technologies"
-                          },
-                          {
-                            icon: <CheckCircle className="w-12 h-12" />,
-                            title: "Quality Assured",
-                            description: "Rigorous testing and optimization"
-                          }
-                        ].map((item, index) => (
-                          <motion.div
-                            key={item.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.2 }}
-                            whileHover={{ scale: 1.05 }}
-                            className="relative group"
-                          >
-                            <div className="text-center p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 
-                                           backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50
-                                           shadow-lg hover:shadow-xl transition-all duration-300">
-                              <div className="relative mb-4">
-                                <div className="absolute inset-0 bg-emerald-500/20 dark:bg-emerald-500/10 
-                                              rounded-full blur-xl group-hover:blur-2xl transition-all duration-300" />
-                                <div className="relative text-emerald-500">
-                                  {item.icon}
-                                </div>
-                              </div>
-                              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                                {item.title}
-                              </h3>
-                              <p className="text-gray-600 dark:text-gray-300">
-                                {item.description}
-                              </p>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  </section>
-
                   {/* Packages Section */}
                   <section id="packages" className="section gradient-pro-bg">
                     <div className="container">
@@ -836,6 +750,7 @@ export function App() {
               } />
               <Route path="/calculator" element={<ProjectCalculatorPage />} />
               <Route path="/prd" element={<PRDFormPage />} />
+              <Route path="/about" element={<About />} />
               <Route path="/404" element={<NotFound />} />
               <Route path="*" element={<Navigate to="/404" replace />} />
             </Routes>
