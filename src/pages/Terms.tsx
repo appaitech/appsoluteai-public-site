@@ -44,7 +44,7 @@ export function Terms() {
               
               <h3>Ownership of Prototypes and MVPs</h3>
               <p>
-                a) All app prototypes, wireframes, designs, and MVPs created by Idea2RealApp ("Company") 
+                a) All app prototypes, wireframes, designs, and MVPs created by Idea2RealApp 
                 remain the exclusive intellectual property of the Company unless explicitly transferred 
                 through a separate written agreement.
               </p>
