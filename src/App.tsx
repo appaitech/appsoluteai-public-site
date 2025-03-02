@@ -553,7 +553,12 @@ export function App() {
                   <section id="packages" className="section gradient-pro-bg">
                     <div className="container">
                       <div className="text-center mb-12">
-                        <h2 className="heading-2 mb-4">Our Packages</h2>
+                        <AnimatedHeading 
+                          variant="glitch"
+                          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4"
+                        >
+                          Our Packages
+                        </AnimatedHeading>
                         <p className="subtitle">Choose the perfect plan for your project</p>
                       </div>
                       <RegionalPricing />

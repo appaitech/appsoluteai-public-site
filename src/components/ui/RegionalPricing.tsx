@@ -21,7 +21,7 @@ interface PricingTier {
 
 const pricingTiers: PricingTier[] = [
   {
-    name: "Rapid MVP",
+    name: "Rapid Prototype",
     description: "Perfect for validating your app idea quickly",
     features: [
       "Core feature development",
@@ -41,7 +41,7 @@ const pricingTiers: PricingTier[] = [
     }
   },
   {
-    name: "Professional Launch",
+    name: "Professional Launch MVP",
     description: "Complete solution for serious businesses",
     features: [
       "Full feature development",

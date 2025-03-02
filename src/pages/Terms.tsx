@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 export function Terms() {
   return (
     <div className="pt-20">
-      <section className="py-32 relative overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="py-16 sm:py-32 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -16,7 +16,11 @@ export function Terms() {
               Terms of Service
             </h1>
             
-            <div className="prose prose-lg dark:prose-invert max-w-none">
+            <div className="prose prose-lg dark:prose-invert max-w-none 
+                           prose-headings:text-gray-900 dark:prose-headings:text-white
+                           prose-p:text-gray-600 dark:prose-p:text-gray-300
+                           prose-li:text-gray-600 dark:prose-li:text-gray-300
+                           prose-a:text-emerald-600 dark:prose-a:text-emerald-400">
               <p className="lead">Last updated: {new Date().toLocaleDateString()}</p>
 
               <h2>1. Agreement to Terms</h2>
@@ -36,17 +40,56 @@ export function Terms() {
                 <li>Digital consultation services</li>
               </ul>
 
-              <h2>3. Project Development</h2>
+              <h2>3. Intellectual Property Rights</h2>
+              
+              <h3>Ownership of Prototypes and MVPs</h3>
               <p>
-                Our development process includes:
+                a) All app prototypes, wireframes, designs, and MVPs created by Idea2RealApp ("Company") 
+                remain the exclusive intellectual property of the Company unless explicitly transferred 
+                through a separate written agreement.
               </p>
-              <ul>
-                <li>Initial consultation and requirements gathering</li>
-                <li>Project planning and timeline establishment</li>
-                <li>Development and testing phases</li>
-                <li>Client review and feedback integration</li>
-                <li>Deployment and maintenance</li>
-              </ul>
+              <p>
+                b) The Client is granted a limited, non-exclusive, and non-transferable license to use 
+                the prototype solely for evaluation and internal testing purposes.
+              </p>
+
+              <h3>Intellectual Property Transfer</h3>
+              <p>
+                a) Full ownership of the prototype, including source code, UI/UX designs, and related 
+                assets, will only be transferred to the Client upon full payment of all agreed-upon fees.
+              </p>
+              <p>
+                b) Any proprietary tools, libraries, or frameworks developed by the Company during the 
+                prototyping process remain the exclusive property of the Company and are not subject to transfer.
+              </p>
+
+              <h3>Restrictions</h3>
+              <p>
+                a) The Client may not modify, copy, distribute, or use the prototype for commercial 
+                deployment without the Company's written consent or the execution of an intellectual 
+                property transfer agreement.
+              </p>
+              <p>
+                b) The Client may not claim authorship or seek to register any intellectual property 
+                created by the Company as their own unless full ownership rights have been explicitly transferred.
+              </p>
+
+              <h3>Third-Party Components</h3>
+              <p>
+                a) If any third-party assets (e.g., open-source libraries, stock images, or licensed tools) 
+                are used in the prototype, their respective licenses will govern their usage, and the 
+                Company does not guarantee transferability.
+              </p>
+
+              <h3>Confidentiality & Non-Disclosure</h3>
+              <p>
+                a) Both parties agree to maintain strict confidentiality regarding proprietary information 
+                exchanged during the development process.
+              </p>
+              <p>
+                b) The Client shall not disclose, reverse-engineer, or reproduce the prototype without 
+                prior written approval from the Company.
+              </p>
 
               <h2>4. Payment Terms</h2>
               <p>
@@ -59,27 +102,7 @@ export function Terms() {
                 <li>All prices are subject to applicable taxes</li>
               </ul>
 
-              <h2>5. Intellectual Property</h2>
-              <p>
-                Upon full payment, clients receive:
-              </p>
-              <ul>
-                <li>Full ownership of the final product</li>
-                <li>Source code and related documentation</li>
-                <li>Rights to modify and distribute the software</li>
-              </ul>
-
-              <h2>6. Limitation of Liability</h2>
-              <p>
-                We strive to provide high-quality services but cannot guarantee:
-              </p>
-              <ul>
-                <li>Uninterrupted or error-free operation</li>
-                <li>Specific business outcomes or results</li>
-                <li>Third-party service availability</li>
-              </ul>
-
-              <h2>7. Contact Information</h2>
+              <h2>5. Contact Information</h2>
               <p>
                 For any questions regarding these terms, please contact us at:
                 <br />
