@@ -3,9 +3,10 @@ import { Menu, X, Camera, Calculator, Sparkles, FileText, Sun, Moon } from 'luci
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
+import { Logo } from '../ui/Logo';
 
 interface HeaderProps {
-  theme: 'light' | 'dark';
+  theme: string;
   toggleTheme: () => void;
 }
 
@@ -68,9 +69,9 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
           <div className="flex items-center space-x-8">
             <Link 
               to="/" 
-              className="text-2xl font-bold gradient-pro-text hover:opacity-90 transition-opacity"
+              className="hover:opacity-90 transition-opacity flex items-center"
             >
-              Idea2RealApp
+              <Logo width={120} height={40} />
             </Link>
             
             <div className="hidden md:flex items-center space-x-1">

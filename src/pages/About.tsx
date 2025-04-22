@@ -34,7 +34,7 @@ export function About() {
                            border border-emerald-500/20"
               >
                 <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                  Welcome to Idea2RealApp
+                  Welcome to AppsoluteAI
                 </span>
               </motion.div>
 

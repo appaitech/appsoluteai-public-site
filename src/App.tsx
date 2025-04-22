@@ -37,6 +37,7 @@ import { Packages } from './pages/Packages';
 import { Footer } from './components/layout/Footer';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Terms } from './pages/Terms';
+import { ParticleAnimation } from './components/ui/ParticleAnimation';
 
 interface FormData {
   name: string;
@@ -313,7 +314,7 @@ export function App() {
     {
       name: "Sarah Johnson",
       role: "CEO, TechStart",
-      content: "Idea2RealApp delivered our MVP in just 2 weeks. The quality and speed were exceptional!",
+      content: "AppsoluteAI delivered our MVP in just 2 weeks. The quality and speed were exceptional!",
       rating: 5
     },
     {
@@ -344,206 +345,143 @@ export function App() {
               <Route path="/" element={
                 <>
                   {/* Hero Section */}
-                  <section className="pt-20 relative overflow-hidden">
-                    {/* Enhanced Animated Background Elements */}
-                    <div className="absolute inset-0 z-0">
-                      {/* Primary gradient burst */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <section className="pt-20 min-h-[calc(100vh-5rem)] relative overflow-hidden bg-black">
+                    <ParticleAnimation />
+                    
+                    <div className="container mx-auto px-6 relative z-10 flex items-center justify-center min-h-[calc(100vh-5rem)]">
+                      <div className="text-center py-20">
                         <motion.div
-                          initial={{ scale: 0.8, opacity: 0 }}
-                          animate={{ 
-                            scale: [0.8, 1.2, 1],
-                            opacity: [0, 1, 0.8]
-                          }}
-                          transition={{ 
-                            duration: 3, 
-                            repeat: Infinity, 
-                            repeatType: "reverse",
-                            ease: "easeInOut" 
-                          }}
-                          className="w-[800px] h-[800px] rounded-full bg-[conic-gradient(from_0deg,#059669,#10b981,#059669)] 
-                                    blur-3xl opacity-20 dark:opacity-30 animate-slow-spin"
-                        />
-                      </div>
-
-                      {/* Floating orbs */}
-                      <motion.div
-                        animate={{ 
-                          y: [-20, 20],
-                          x: [-10, 10],
-                          rotate: [0, 360]
-                        }}
-                        transition={{ 
-                          duration: 8, 
-                          repeat: Infinity, 
-                          repeatType: "reverse" 
-                        }}
-                        className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full 
-                                   bg-gradient-to-r from-emerald-300 to-teal-400 
-                                     blur-2xl mix-blend-screen opacity-30"
-                      />
-                      <motion.div
-                        animate={{ 
-                          y: [20, -20],
-                          x: [10, -10],
-                          rotate: [360, 0]
-                        }}
-                        transition={{ 
-                          duration: 10, 
-                          repeat: Infinity, 
-                          repeatType: "reverse" 
-                        }}
-                        className="absolute bottom-1/4 left-1/4 w-96 h-96 rounded-full 
-                                   bg-gradient-to-r from-green-400 via-emerald-500 to-teal-300 
-                                     blur-2xl mix-blend-screen opacity-30"
-                      />
-
-                      {/* Enhanced grid pattern */}
-                      <div className="absolute inset-0">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent" />
-                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f0f0f1a_1px,transparent_1px),linear-gradient(to_bottom,#0f0f0f1a_1px,transparent_1px)] 
-                                bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-                      </div>
-
-                      {/* Animated particles */}
-                      <div className="absolute inset-0">
-                        {[...Array(12)].map((_, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ 
-                              x: Math.random() * window.innerWidth,
-                              y: Math.random() * window.innerHeight,
-                              scale: 0,
-                              opacity: 0
-                            }}
-                            animate={{ 
-                              x: Math.random() * window.innerWidth,
-                              y: Math.random() * window.innerHeight,
-                              scale: [0, 1, 0],
-                              opacity: [0, 1, 0]
-                            }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 1.2 }}
+                          className="max-w-5xl mx-auto"
+                        >
+                          <motion.h1 
+                            className="text-8xl md:text-9xl lg:text-[12rem] font-bold mb-8 leading-none relative"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
                             transition={{ 
-                              duration: 8 + Math.random() * 5,
-                              repeat: Infinity,
-                              repeatType: "loop",
-                              ease: "easeInOut"
+                              duration: 1,
+                              ease: [0.6, -0.05, 0.01, 0.99]
                             }}
-                            className="absolute w-2 h-2 rounded-full bg-emerald-400/30 
-                                       shadow-[0_0_8px_3px_rgba(16,185,129,0.3)]"
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="container mx-auto px-6 pt-32 pb-24 relative z-10">
-                      <div className="text-center max-w-4xl mx-auto">
-                        <motion.h1 
-                          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.8 }}
-                        >
-                          <span className="block mb-2">Turn Your Ideas Into</span>
-                          <span className="bg-gradient-to-r from-emerald-500 to-teal-500 
-                                          dark:from-emerald-400 dark:to-teal-400 
-                                          bg-clip-text text-transparent">
-                            Reality
-                          </span>
-                        </motion.h1>
-
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                          <div className="flex flex-col items-center justify-center mb-12">
-                            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-                              <motion.div
-                                className="group relative px-2"
-                                whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                              >
-                                <span className="text-2xl md:text-3xl font-light tracking-wide
-                                               text-white dark:text-white/90">
-                                  Dream it
-                                </span>
-                                <motion.div 
-                                  className="absolute bottom-0 left-0 h-[2px] bg-white 
-                                             w-0 group-hover:w-full transition-all duration-500 ease-out
-                                             shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
-                                />
-                              </motion.div>
-
-                              <span className="text-white/60">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                              </span>
-
-                              <motion.div
-                                className="group relative px-2"
-                                whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                              >
-                                <span className="text-2xl md:text-3xl font-light tracking-wide
-                                               text-white dark:text-white/90">
-                                  Prototype it
-                                </span>
-                                <motion.div 
-                                  className="absolute bottom-0 left-0 h-[2px] bg-white 
-                                             w-0 group-hover:w-full transition-all duration-500 ease-out
-                                             shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
-                                />
-                              </motion.div>
-
-                              <span className="text-white/60">
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                              </span>
-
-                              <motion.div
-                                className="group relative px-2"
-                                whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                              >
-                                <span className="text-2xl md:text-3xl font-light tracking-wide
-                                               text-white dark:text-white/90">
-                                  Launch it
-                                </span>
-                                <motion.div 
-                                  className="absolute bottom-0 left-0 h-[2px] bg-white 
-                                             w-0 group-hover:w-full transition-all duration-500 ease-out
-                                             shadow-[0_2px_8px_rgba(255,255,255,0.5)]"
-                                />
-                              </motion.div>
-                            </div>
-
-                            <motion.div 
-                              className="mt-6 text-base md:text-lg text-white/80 dark:text-white/70 tracking-wider font-light"
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 0.4 }}
-                            >
-                              Where innovation meets execution
-                            </motion.div>
-                          </div>
-                        </motion.div>
-
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.8, delay: 0.4 }}
-                          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                        >
-                          <Link 
-                            to="/prd" 
-                            className="btn-pro-primary px-8 py-4 text-lg w-full sm:w-auto"
                           >
-                            Start Your Project
-                          </Link>
-                      
+                            <span className="relative inline-block">
+                              <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                                App
+                              </span>
+                              <motion.span
+                                className="absolute inset-0 z-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 blur-2xl"
+                                animate={{
+                                  scale: [1, 1.2, 1],
+                                  opacity: [0.5, 0.8, 0.5]
+                                }}
+                                transition={{
+                                  duration: 3,
+                                  repeat: Infinity,
+                                  ease: "easeInOut"
+                                }}
+                              />
+                            </span>
+                            <span className="relative inline-block">
+                              <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                                solute
+                              </span>
+                              <motion.span
+                                className="absolute inset-0 z-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl"
+                                animate={{
+                                  scale: [1, 1.2, 1],
+                                  opacity: [0.5, 0.8, 0.5]
+                                }}
+                                transition={{
+                                  duration: 3,
+                                  delay: 0.2,
+                                  repeat: Infinity,
+                                  ease: "easeInOut"
+                                }}
+                              />
+                            </span>
+                            <span className="relative inline-block ml-4">
+                              <span className="relative z-10 bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(59,130,246,0.2)]">
+                                AI
+                              </span>
+                              <motion.div
+                                className="absolute -inset-2 z-0"
+                                animate={{
+                                  background: [
+                                    'radial-gradient(circle, rgba(52,211,153,0.3) 0%, transparent 70%)',
+                                    'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
+                                    'radial-gradient(circle, rgba(147,51,234,0.3) 0%, transparent 70%)',
+                                  ]
+                                }}
+                                transition={{
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  ease: "easeInOut"
+                                }}
+                              />
+                              <motion.span
+                                className="absolute inset-0 z-0 opacity-75 blur-2xl bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500"
+                                animate={{
+                                  scale: [1, 1.2, 1],
+                                  opacity: [0.3, 0.6, 0.3]
+                                }}
+                                transition={{
+                                  duration: 3,
+                                  repeat: Infinity,
+                                  ease: "easeInOut"
+                                }}
+                              />
+                            </span>
+                          </motion.h1>
+
+                          <motion.div
+                            className="relative"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              duration: 1,
+                              delay: 0.5,
+                              ease: [0.6, -0.05, 0.01, 0.99]
+                            }}
+                          >
+                            <motion.p
+                              className="text-3xl md:text-4xl text-gray-300 font-light tracking-widest mt-4 relative z-10"
+                            >
+                              PURE. FAST. INTELLIGENT.
+                            </motion.p>
+                            <motion.div
+                              className="absolute inset-0 z-0 blur-lg"
+                              animate={{
+                                background: [
+                                  'linear-gradient(90deg, rgba(52,211,153,0.2) 0%, rgba(59,130,246,0.2) 50%, rgba(147,51,234,0.2) 100%)',
+                                  'linear-gradient(90deg, rgba(147,51,234,0.2) 0%, rgba(52,211,153,0.2) 50%, rgba(59,130,246,0.2) 100%)',
+                                ]
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                              }}
+                            />
+                          </motion.div>
+
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                              duration: 1,
+                              delay: 1,
+                              ease: [0.6, -0.05, 0.01, 0.99]
+                            }}
+                            className="mt-16"
+                          >
+                            <Link 
+                              to="/prd" 
+                              className="btn-pro-primary px-12 py-6 text-xl bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 transition-all duration-300 rounded-xl shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+                            >
+                              Start Your Journey
+                            </Link>
+                          </motion.div>
                         </motion.div>
                       </div>
                     </div>

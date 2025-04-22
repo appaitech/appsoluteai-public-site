@@ -79,8 +79,8 @@ export function PrivacyPolicy() {
               <p>
                 If you have any questions about this Privacy Policy, please contact us at:
                 <br />
-                <a href="mailto:privacy@idea2realapp.com" className="text-emerald-600 hover:text-emerald-700">
-                  privacy@idea2realapp.com
+                <a href="mailto:privacy@appsoluteai.com" className="text-emerald-600 hover:text-emerald-700">
+                  privacy@appsoluteai.com
                 </a>
               </p>
             </div>

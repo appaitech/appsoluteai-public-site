@@ -9,7 +9,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <h3 className="text-2xl font-bold gradient-pro-text">
-              Idea2RealApp
+              AppsoluteAI
             </h3>
             <p className="text-gray-600 dark:text-gray-400 max-w-xs">
               Transforming your digital dreams into reality, one innovative solution at a time.
@@ -49,12 +49,12 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <a 
-                  href="mailto:contact@idea2realapp.com"
+                  href="mailto:contact@appsoluteai.com"
                   className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 
                            dark:text-gray-400 dark:hover:text-emerald-400 transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>contact@idea2realapp.com</span>
+                  <span>contact@appsoluteai.com</span>
                 </a>
               </li>
               <li>
@@ -123,7 +123,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-200/20 dark:border-gray-800/20">
           <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-center">
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              © {new Date().getFullYear()} Idea2RealApp. All rights reserved.
+              © {new Date().getFullYear()} AppsoluteAI. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 sm:mt-0">
               <Link 

@@ -78,6 +78,10 @@ interface FileUpload {
   preview: string;
 }
 
+interface ValidationErrors {
+  [key: string]: string;
+}
+
 // Add these constants for the checkboxes and radio options
 const TARGET_AUDIENCES = [
   { id: 'general', label: 'General consumers' },
@@ -144,6 +148,43 @@ const FORM_SECTIONS = [
   { id: 'maintenance', title: 'Maintenance', icon: Settings }
 ];
 
+const validateForm = (data: PRDFormData): ValidationErrors => {
+  const errors: ValidationErrors = {};
+
+  // Required fields validation
+  if (!data.clientName) errors.clientName = 'Client name is required';
+  if (!data.companyName) errors.companyName = 'Company name is required';
+  if (!data.email) errors.email = 'Email is required';
+  if (!data.projectDescription) errors.projectDescription = 'Project description is required';
+  if (!data.primaryPurpose) errors.primaryPurpose = 'Primary purpose is required';
+  if (!data.problemSolution) errors.problemSolution = 'Problem solution is required';
+  if (data.targetAudience.length === 0) errors.targetAudience = 'Target audience is required';
+  if (!data.timeline) errors.timeline = 'Timeline is required';
+  if (data.platforms.length === 0) errors.platforms = 'At least one platform is required';
+
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (data.email && !emailRegex.test(data.email)) {
+    errors.email = 'Invalid email format';
+  }
+
+  return errors;
+};
+
+const submitPRD = async (data: PRDFormData): Promise<void> => {
+  // Here you would typically send the data to your backend
+  // For now, we'll just simulate an API call
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() > 0.1) { // 90% success rate
+        resolve();
+      } else {
+        reject(new Error('Failed to submit PRD'));
+      }
+    }, 1500);
+  });
+};
+
 export function PRDFormPage() {
   const [formData, setFormData] = useState<PRDFormData>({
     // Initialize with default values
@@ -191,7 +232,8 @@ export function PRDFormPage() {
   const [currentSection, setCurrentSection] = useState('basic');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  const [formErrors, setFormErrors] = useState<string[]>([]);
   const [costEstimate, setCostEstimate] = useState({ min: 0, max: 0 });
 
   const calculateEstimate = (data: PRDFormData) => {
@@ -217,13 +259,18 @@ export function PRDFormPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFormErrors([]);
     
     try {
       // Validate form
       const errors = validateForm(formData);
       if (Object.keys(errors).length > 0) {
         setValidationErrors(errors);
-        toast.error('Please fill in all required fields');
+        setFormErrors(Object.values(errors));
+        Object.values(errors).forEach(error => {
+          toast.error(error);
+        });
+        setIsSubmitting(false);
         return;
       }
 
@@ -913,7 +960,7 @@ export function PRDFormPage() {
         <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
           <Info className="w-5 h-5" />
           <p className="text-sm">
-            This PRD will be prepared by Idea2RealApp's expert team based on your inputs.
+            This PRD will be prepared by AppsoluteAI's expert team based on your inputs.
           </p>
         </div>
       </div>

@@ -31,7 +31,7 @@ export function Terms() {
 
               <h2>2. Description of Services</h2>
               <p>
-                Idea2RealApp provides software development and digital transformation services, including:
+                AppsoluteAI provides software development and digital transformation services, including:
               </p>
               <ul>
                 <li>Custom software development</li>
@@ -44,7 +44,7 @@ export function Terms() {
               
               <h3>Ownership of Prototypes and MVPs</h3>
               <p>
-                a) All app prototypes, wireframes, designs, and MVPs created by Idea2RealApp 
+                a) All app prototypes, wireframes, designs, and MVPs created by AppsoluteAI 
                 remain the exclusive intellectual property of the Company unless explicitly transferred 
                 through a separate written agreement.
               </p>
@@ -106,8 +106,8 @@ export function Terms() {
               <p>
                 For any questions regarding these terms, please contact us at:
                 <br />
-                <a href="mailto:legal@idea2realapp.com" className="text-emerald-600 hover:text-emerald-700">
-                  legal@idea2realapp.com
+                <a href="mailto:legal@appsoluteai.com" className="text-emerald-600 hover:text-emerald-700">
+                  legal@appsoluteai.com
                 </a>
               </p>
             </div>
