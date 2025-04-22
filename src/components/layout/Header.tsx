@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
 import { Logo } from '../ui/Logo';
+import { Button } from '../ui/Button';
 
 interface HeaderProps {
   theme: string;
@@ -79,17 +80,18 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`px-4 py-2 rounded-lg transition-all duration-200
+                  className={`px-4 py-2 rounded-lg transition-all duration-300
                             text-gray-600 hover:text-emerald-600
                             dark:text-gray-300 dark:hover:text-emerald-400
-                            ${location.pathname === item.href ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : ''}
-                            hover:bg-emerald-50 dark:hover:bg-emerald-900/30`}
+                            ${location.pathname === item.href ? 'bg-emerald-50/50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : ''}
+                            hover:bg-emerald-50/50 dark:hover:bg-emerald-900/30
+                            backdrop-blur-sm`}
                 >
                   <span className="flex items-center space-x-2">
                     {item.icon && <item.icon className="w-4 h-4" />}
                     <span>{item.name}</span>
                     {item.isNew && (
-                      <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400">
+                      <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 dark:from-emerald-500/40 dark:to-blue-500/40 text-emerald-600 dark:text-emerald-400 backdrop-blur-sm">
                         New
                       </span>
                     )}
@@ -100,17 +102,22 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
           </div>
 
           <div className="flex items-center space-x-4">
-            <button 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={toggleTheme}
-              className="btn-pro-secondary p-2"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
+              className="!p-2"
+              leftIcon={theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            />
             
-            <Link to="/prd" className="btn-pro-primary">
+            <Button
+              to="/prd"
+              variant="primary"
+              size="md"
+              rightIcon={<Sparkles className="w-4 h-4" />}
+            >
               Get Started
-            </Link>
+            </Button>
           </div>
         </nav>
       </div>

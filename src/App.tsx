@@ -335,360 +335,360 @@ export function App() {
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <Router>
-          <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-            <Seo />
-            <CommandMenu />
+          <div className="flex flex-col min-h-screen">
             <Header theme={theme} toggleTheme={toggleTheme} />
-            <ScrollProgress />
+            <main className="flex-grow">
+              <Seo />
+              <CommandMenu />
+              <ScrollProgress />
 
-            <Routes>
-              <Route path="/" element={
-                <>
-                  {/* Hero Section */}
-                  <section className="pt-20 min-h-[calc(100vh-5rem)] relative overflow-hidden bg-black">
-                    <ParticleAnimation />
-                    
-                    <div className="container mx-auto px-6 relative z-10 flex items-center justify-center min-h-[calc(100vh-5rem)]">
-                      <div className="text-center py-20">
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 1.2 }}
-                          className="max-w-5xl mx-auto"
-                        >
-                          <motion.h1 
-                            className="text-8xl md:text-9xl lg:text-[12rem] font-bold mb-8 leading-none relative"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ 
-                              duration: 1,
-                              ease: [0.6, -0.05, 0.01, 0.99]
-                            }}
+              <Routes>
+                <Route path="/" element={
+                  <>
+                    {/* Hero Section */}
+                    <section className="pt-20 min-h-[calc(100vh-5rem)] relative overflow-hidden bg-black">
+                      <ParticleAnimation />
+                      
+                      <div className="container mx-auto px-6 relative z-10 flex items-center justify-center min-h-[calc(100vh-5rem)]">
+                        <div className="text-center py-20">
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1.2 }}
+                            className="max-w-5xl mx-auto"
                           >
-                            <span className="relative inline-block">
-                              <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                                App
+                            <motion.h1 
+                              className="text-8xl md:text-9xl lg:text-[12rem] font-bold mb-8 leading-none relative"
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ 
+                                duration: 1,
+                                ease: [0.6, -0.05, 0.01, 0.99]
+                              }}
+                            >
+                              <span className="relative inline-block">
+                                <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                                  App
+                                </span>
+                                <motion.span
+                                  className="absolute inset-0 z-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 blur-2xl"
+                                  animate={{
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.5, 0.8, 0.5]
+                                  }}
+                                  transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                  }}
+                                />
                               </span>
-                              <motion.span
-                                className="absolute inset-0 z-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 blur-2xl"
-                                animate={{
-                                  scale: [1, 1.2, 1],
-                                  opacity: [0.5, 0.8, 0.5]
-                                }}
-                                transition={{
-                                  duration: 3,
-                                  repeat: Infinity,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            </span>
-                            <span className="relative inline-block">
-                              <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                                solute
+                              <span className="relative inline-block">
+                                <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                                  solute
+                                </span>
+                                <motion.span
+                                  className="absolute inset-0 z-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl"
+                                  animate={{
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.5, 0.8, 0.5]
+                                  }}
+                                  transition={{
+                                    duration: 3,
+                                    delay: 0.2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                  }}
+                                />
                               </span>
-                              <motion.span
-                                className="absolute inset-0 z-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl"
-                                animate={{
-                                  scale: [1, 1.2, 1],
-                                  opacity: [0.5, 0.8, 0.5]
-                                }}
-                                transition={{
-                                  duration: 3,
-                                  delay: 0.2,
-                                  repeat: Infinity,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            </span>
-                            <span className="relative inline-block ml-4">
-                              <span className="relative z-10 bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(59,130,246,0.2)]">
-                                AI
+                              <span className="relative inline-block ml-4">
+                                <span className="relative z-10 bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(59,130,246,0.2)]">
+                                  AI
+                                </span>
+                                <motion.div
+                                  className="absolute -inset-2 z-0"
+                                  animate={{
+                                    background: [
+                                      'radial-gradient(circle, rgba(52,211,153,0.3) 0%, transparent 70%)',
+                                      'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
+                                      'radial-gradient(circle, rgba(147,51,234,0.3) 0%, transparent 70%)',
+                                    ]
+                                  }}
+                                  transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                  }}
+                                />
+                                <motion.span
+                                  className="absolute inset-0 z-0 opacity-75 blur-2xl bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500"
+                                  animate={{
+                                    scale: [1, 1.2, 1],
+                                    opacity: [0.3, 0.6, 0.3]
+                                  }}
+                                  transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                  }}
+                                />
                               </span>
+                            </motion.h1>
+
+                            <motion.div
+                              className="relative"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ 
+                                duration: 1,
+                                delay: 0.5,
+                                ease: [0.6, -0.05, 0.01, 0.99]
+                              }}
+                            >
+                              <motion.p
+                                className="text-3xl md:text-4xl text-gray-300 font-light tracking-widest mt-4 relative z-10"
+                              >
+                                PURE. FAST. INTELLIGENT.
+                              </motion.p>
                               <motion.div
-                                className="absolute -inset-2 z-0"
+                                className="absolute inset-0 z-0 blur-lg"
                                 animate={{
                                   background: [
-                                    'radial-gradient(circle, rgba(52,211,153,0.3) 0%, transparent 70%)',
-                                    'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
-                                    'radial-gradient(circle, rgba(147,51,234,0.3) 0%, transparent 70%)',
+                                    'linear-gradient(90deg, rgba(52,211,153,0.2) 0%, rgba(59,130,246,0.2) 50%, rgba(147,51,234,0.2) 100%)',
+                                    'linear-gradient(90deg, rgba(147,51,234,0.2) 0%, rgba(52,211,153,0.2) 50%, rgba(59,130,246,0.2) 100%)',
                                   ]
                                 }}
                                 transition={{
-                                  duration: 4,
-                                  repeat: Infinity,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                              <motion.span
-                                className="absolute inset-0 z-0 opacity-75 blur-2xl bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500"
-                                animate={{
-                                  scale: [1, 1.2, 1],
-                                  opacity: [0.3, 0.6, 0.3]
-                                }}
-                                transition={{
                                   duration: 3,
                                   repeat: Infinity,
                                   ease: "easeInOut"
                                 }}
                               />
-                            </span>
-                          </motion.h1>
+                            </motion.div>
 
-                          <motion.div
-                            className="relative"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ 
-                              duration: 1,
-                              delay: 0.5,
-                              ease: [0.6, -0.05, 0.01, 0.99]
-                            }}
-                          >
-                            <motion.p
-                              className="text-3xl md:text-4xl text-gray-300 font-light tracking-widest mt-4 relative z-10"
-                            >
-                              PURE. FAST. INTELLIGENT.
-                            </motion.p>
                             <motion.div
-                              className="absolute inset-0 z-0 blur-lg"
-                              animate={{
-                                background: [
-                                  'linear-gradient(90deg, rgba(52,211,153,0.2) 0%, rgba(59,130,246,0.2) 50%, rgba(147,51,234,0.2) 100%)',
-                                  'linear-gradient(90deg, rgba(147,51,234,0.2) 0%, rgba(52,211,153,0.2) 50%, rgba(59,130,246,0.2) 100%)',
-                                ]
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ 
+                                duration: 1,
+                                delay: 1,
+                                ease: [0.6, -0.05, 0.01, 0.99]
                               }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                              }}
-                            />
-                          </motion.div>
-
-                          <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ 
-                              duration: 1,
-                              delay: 1,
-                              ease: [0.6, -0.05, 0.01, 0.99]
-                            }}
-                            className="mt-16"
-                          >
-                            <Link 
-                              to="/prd" 
-                              className="btn-pro-primary px-12 py-6 text-xl bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 transition-all duration-300 rounded-xl shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+                              className="mt-16"
                             >
-                              Start Your Journey
-                            </Link>
+                              <Link 
+                                to="/prd" 
+                                className="btn-pro-primary px-12 py-6 text-xl bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 transition-all duration-300 rounded-xl shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+                              >
+                                Start Your Journey
+                              </Link>
+                            </motion.div>
                           </motion.div>
-                        </motion.div>
+                        </div>
                       </div>
-                    </div>
-                  </section>
+                    </section>
 
-                  {/* Packages Section */}
-                  <section id="packages" className="section gradient-pro-bg">
-                    <div className="container">
-                      <div className="text-center mb-12">
-                        <AnimatedHeading 
-                          variant="glitch"
-                          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4"
-                        >
-                          Our Packages
-                        </AnimatedHeading>
-                        <p className="subtitle">Choose the perfect plan for your project</p>
-                      </div>
-                      <RegionalPricing />
-                    </div>
-                  </section>
-
-                  {/* Testimonials Section */}
-                  <section id="testimonials" className="py-24 bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-50 
-                                             dark:from-emerald-900/40 dark:via-emerald-800/20 dark:to-gray-900">
-                    <div className="container mx-auto px-6">
-                      <AnimatedHeading 
-                        variant="glitch"
-                        className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
-                      >
-                        What Our Clients Say
-                      </AnimatedHeading>
-                      <div className="grid md:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial, index) => (
-                          <div 
-                            key={index} 
-                            className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 
-                                       shadow-lg hover:shadow-xl transition duration-300 
-                                       border border-emerald-100 dark:border-emerald-800"
-                          >
-                            <div className="flex items-center mb-4">
-                              {[...Array(testimonial.rating)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  className="w-5 h-5 text-emerald-500 dark:text-emerald-400 fill-current" 
-                                />
-                              ))}
-                            </div>
-                            <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
-                              "{testimonial.content}"
-                            </p>
-                            <div className="border-t border-emerald-100 dark:border-emerald-800/50 pt-4">
-                              <p className="font-semibold text-gray-900 dark:text-white">
-                                {testimonial.name}
-                              </p>
-                              <p className="text-emerald-600 dark:text-emerald-400">
-                                {testimonial.role}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* Blog Section */}
-                  <section className="py-24 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 
-                                     dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-                    <Blog />
-                  </section>
-
-                  {/* Contact Section */}
-                  <section id="contact" className="py-24 bg-gradient-to-br from-white to-emerald-50 
-                                             dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-                    {/* Decorative background elements */}
-                    <div className="absolute inset-0 opacity-30 dark:opacity-20">
-                      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-200 dark:bg-emerald-800/30 
-                                      rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float" />
-                      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200 dark:bg-teal-800/30 
-                                      rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float delay-300" />
-                    </div>
-
-                    <div className="container mx-auto px-6 relative">
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="max-w-2xl mx-auto"
-                      >
+                    {/* Packages Section */}
+                    <section id="packages" className="section gradient-pro-bg">
+                      <div className="container">
                         <div className="text-center mb-12">
                           <AnimatedHeading 
                             variant="glitch"
                             className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4"
                           >
-                            Get In Touch
+                            Our Packages
                           </AnimatedHeading>
-                          <p className="text-gray-600 dark:text-gray-300">
-                            Ready to transform your idea into reality? Let's start the conversation.
-                          </p>
+                          <p className="subtitle">Choose the perfect plan for your project</p>
                         </div>
+                        <RegionalPricing />
+                      </div>
+                    </section>
 
-                        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl p-8 
-                                        shadow-lg border border-gray-100 dark:border-gray-700">
-                          <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-6">
-                              <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                  Name
-                                </label>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  required
-                                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
-                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                                           focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400
-                                           transition-colors duration-200 ease-in-out
-                                           placeholder-gray-400 dark:placeholder-gray-500"
-                                  placeholder="John Doe"
-                                />
+                    {/* Testimonials Section */}
+                    <section id="testimonials" className="py-24 bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-50 
+                                               dark:from-emerald-900/40 dark:via-emerald-800/20 dark:to-gray-900">
+                      <div className="container mx-auto px-6">
+                        <AnimatedHeading 
+                          variant="glitch"
+                          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
+                        >
+                          What Our Clients Say
+                        </AnimatedHeading>
+                        <div className="grid md:grid-cols-3 gap-8">
+                          {testimonials.map((testimonial, index) => (
+                            <div 
+                              key={index} 
+                              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-xl p-6 
+                                         shadow-lg hover:shadow-xl transition duration-300 
+                                         border border-emerald-100 dark:border-emerald-800"
+                            >
+                              <div className="flex items-center mb-4">
+                                {[...Array(testimonial.rating)].map((_, i) => (
+                                  <Star 
+                                    key={i} 
+                                    className="w-5 h-5 text-emerald-500 dark:text-emerald-400 fill-current" 
+                                  />
+                                ))}
                               </div>
-                              <div className="space-y-2">
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                  Email
-                                </label>
-                                <input
-                                  type="email"
-                                  name="email"
-                                  required
-                                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
-                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                                           focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400
-                                           transition-colors duration-200 ease-in-out
-                                           placeholder-gray-400 dark:placeholder-gray-500"
-                                  placeholder="john@example.com"
-                                />
+                              <p className="text-gray-600 dark:text-gray-300 mb-6 italic">
+                                "{testimonial.content}"
+                              </p>
+                              <div className="border-t border-emerald-100 dark:border-emerald-800/50 pt-4">
+                                <p className="font-semibold text-gray-900 dark:text-white">
+                                  {testimonial.name}
+                                </p>
+                                <p className="text-emerald-600 dark:text-emerald-400">
+                                  {testimonial.role}
+                                </p>
                               </div>
                             </div>
-
-                            <div className="space-y-2">
-                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Message
-                              </label>
-                              <textarea
-                                name="message"
-                                required
-                                rows={6}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
-                                         bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                                         focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400
-                                         transition-colors duration-200 ease-in-out
-                                         placeholder-gray-400 dark:placeholder-gray-500"
-                                placeholder="Tell us about your project..."
-                              />
-                            </div>
-
-                            <div className="flex items-center justify-between pt-4">
-                              <div className="flex items-center space-x-6 text-gray-600 dark:text-gray-400">
-                                <a href="mailto:contact@appsnap.dev" className="flex items-center space-x-2 hover:text-emerald-500 transition-colors">
-                                  <Mail className="w-5 h-5" />
-                                  <span>contact@appsnap.dev</span>
-                                </a>
-                                <a href="tel:+1234567890" className="flex items-center space-x-2 hover:text-emerald-500 transition-colors">
-                                  <Phone className="w-5 h-5" />
-                                  <span>+1 (234) 567-890</span>
-                                </a>
-                              </div>
-                              <button 
-                                type="submit" 
-                                className="btn-base flex items-center space-x-2 px-8"
-                              >
-                                <Send className="w-5 h-5" />
-                                <span>Send Message</span>
-                                <motion.div
-                                  className="absolute inset-0 bg-white/20"
-                                  initial={{ scale: 0, opacity: 0 }}
-                                  animate={{ scale: [0, 1.5, 1], opacity: [0, 0.2, 0] }}
-                                  transition={{ duration: 1, repeat: Infinity }}
-                                />
-                              </button>
-                            </div>
-                          </form>
+                          ))}
                         </div>
+                      </div>
+                    </section>
 
-                        {/* Social proof or additional contact info */}
-                        <div className="mt-12 text-center">
-                          <p className="text-gray-600 dark:text-gray-400 mb-4">
-                            Trusted by companies worldwide
-                          </p>
-                          <div className="flex justify-center items-center space-x-8 opacity-50">
-                            {/* Add your client logos here */}
+                    {/* Blog Section */}
+                    <section className="py-24 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 
+                                       dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+                      <Blog />
+                    </section>
+
+                    {/* Contact Section */}
+                    <section id="contact" className="py-24 mb-32 relative overflow-hidden">
+                      {/* Decorative background elements */}
+                      <div className="absolute inset-0 opacity-50">
+                        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-200 dark:bg-emerald-800/30 
+                                        rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float" />
+                        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200 dark:bg-teal-800/30 
+                                        rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float delay-300" />
+                      </div>
+
+                      <div className="container mx-auto px-6 relative">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          className="max-w-2xl mx-auto"
+                        >
+                          <div className="text-center mb-12">
+                            <AnimatedHeading 
+                              variant="glitch"
+                              className="text-3xl md:text-4xl font-bold text-center text-white mb-4"
+                            >
+                              Get In Touch
+                            </AnimatedHeading>
+                            <p className="text-gray-300">
+                              Ready to transform your idea into reality? Let's start the conversation.
+                            </p>
                           </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                  </section>
-                </>
-              } />
-              <Route path="/packages" element={<Packages />} />
-              <Route path="/calculator" element={<ProjectCalculatorPage />} />
-              <Route path="/prd" element={<PRDFormPage />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/404" element={<NotFound />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="*" element={<Navigate to="/404" replace />} />
-            </Routes>
 
+                          <div className="bg-gray-900/80 backdrop-blur-lg rounded-2xl p-8 
+                                        shadow-lg border border-gray-700/50">
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                              <div className="grid md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Name
+                                  </label>
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    required
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                                             bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                                             focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400
+                                             transition-colors duration-200 ease-in-out
+                                             placeholder-gray-400 dark:placeholder-gray-500"
+                                    placeholder="John Doe"
+                                  />
+                                </div>
+                                <div className="space-y-2">
+                                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Email
+                                  </label>
+                                  <input
+                                    type="email"
+                                    name="email"
+                                    required
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                                             bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                                             focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400
+                                             transition-colors duration-200 ease-in-out
+                                             placeholder-gray-400 dark:placeholder-gray-500"
+                                    placeholder="john@example.com"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="space-y-2">
+                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                  Message
+                                </label>
+                                <textarea
+                                  name="message"
+                                  required
+                                  rows={6}
+                                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                                           bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                                           focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400
+                                           transition-colors duration-200 ease-in-out
+                                           placeholder-gray-400 dark:placeholder-gray-500"
+                                  placeholder="Tell us about your project..."
+                                />
+                              </div>
+
+                              <div className="flex items-center justify-between pt-4">
+                                <div className="flex items-center space-x-6 text-gray-600 dark:text-gray-400">
+                                  <a href="mailto:contact@appsnap.dev" className="flex items-center space-x-2 hover:text-emerald-500 transition-colors">
+                                    <Mail className="w-5 h-5" />
+                                    <span>contact@appsnap.dev</span>
+                                  </a>
+                                  <a href="tel:+1234567890" className="flex items-center space-x-2 hover:text-emerald-500 transition-colors">
+                                    <Phone className="w-5 h-5" />
+                                    <span>+1 (234) 567-890</span>
+                                  </a>
+                                </div>
+                                <button 
+                                  type="submit" 
+                                  className="btn-base flex items-center space-x-2 px-8"
+                                >
+                                  <Send className="w-5 h-5" />
+                                  <span>Send Message</span>
+                                  <motion.div
+                                    className="absolute inset-0 bg-white/20"
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    animate={{ scale: [0, 1.5, 1], opacity: [0, 0.2, 0] }}
+                                    transition={{ duration: 1, repeat: Infinity }}
+                                  />
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+
+                          {/* Social proof or additional contact info */}
+                          <div className="mt-12 text-center">
+                            <p className="text-gray-600 dark:text-gray-400 mb-4">
+                              Trusted by companies worldwide
+                            </p>
+                            <div className="flex justify-center items-center space-x-8 opacity-50">
+                              {/* Add your client logos here */}
+                            </div>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </section>
+                  </>
+                } />
+                <Route path="/packages" element={<Packages />} />
+                <Route path="/calculator" element={<ProjectCalculatorPage />} />
+                <Route path="/prd" element={<PRDFormPage />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/404" element={<NotFound />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="*" element={<Navigate to="/404" replace />} />
+              </Routes>
+            </main>
             <Footer />
             <ChatBot />
             <Analytics />

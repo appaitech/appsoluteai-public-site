@@ -1,148 +1,101 @@
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Logo } from '../ui/Logo';
+import { Button } from '../ui/Button';
+import { Github, Twitter, Linkedin, ArrowRight } from 'lucide-react';
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+  
+  const footerLinks = [
+    {
+      title: 'Product',
+      links: [
+        { name: 'Features', href: '/features' },
+        { name: 'PRD', href: '/prd' },
+        { name: 'Pricing', href: '/pricing' },
+        { name: 'Blog', href: '/blog' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { name: 'About', href: '/about' },
+        { name: 'Contact', href: '/contact' },
+        { name: 'Privacy', href: '/privacy' },
+        { name: 'Terms', href: '/terms' },
+      ],
+    },
+  ];
+
+  const socialLinks = [
+    { name: 'GitHub', href: 'https://github.com/appsoluteai', icon: Github },
+    { name: 'Twitter', href: 'https://twitter.com/appsoluteai', icon: Twitter },
+    { name: 'LinkedIn', href: 'https://linkedin.com/company/appsoluteai', icon: Linkedin },
+  ];
+
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200/20 dark:border-gray-800/20">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Company Info */}
-          <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-            <h3 className="text-2xl font-bold gradient-pro-text">
-              AppsoluteAI
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-xs">
-              Transforming your digital dreams into reality, one innovative solution at a time.
+    <footer className="relative z-10 mt-32 border-t border-gray-800 bg-gray-900/80 backdrop-blur-sm">
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="col-span-1 md:col-span-2 space-y-8">
+            <Link to="/" className="hover:opacity-90 transition-opacity inline-block">
+              <Logo width={120} height={40} />
+            </Link>
+            <p className="text-gray-300 max-w-md text-base leading-relaxed">
+              Transform your product ideas into comprehensive PRDs with AI assistance.
+              Get started today and streamline your product development process.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Quick Links
-            </h4>
-            <ul className="space-y-3">
-              {[
-                { name: 'Home', href: '/' },
-                { name: 'About', href: '/about' },
-                { name: 'Packages', href: '/packages' },
-                { name: 'PRD Form', href: '/prd' },
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    to={link.href}
-                    className="text-gray-600 hover:text-emerald-600 dark:text-gray-400 
-                             dark:hover:text-emerald-400 transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
+            <div className="flex items-center space-x-4">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 hover:scale-110 transition-transform rounded-xl border border-gray-700 text-gray-300 hover:bg-gray-800 inline-flex items-center justify-center"
+                  aria-label={item.name}
+                >
+                  <item.icon className="w-5 h-5" />
+                </a>
               ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Contact Us
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <a 
-                  href="mailto:contact@appsoluteai.com"
-                  className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 
-                           dark:text-gray-400 dark:hover:text-emerald-400 transition-colors"
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>contact@appsoluteai.com</span>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="tel:+27123456789"
-                  className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 
-                           dark:text-gray-400 dark:hover:text-emerald-400 transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>+27 12 345 6789</span>
-                </a>
-              </li>
-              <li>
-                <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
-                  <MapPin className="w-4 h-4" />
-                  <span>Cape Town, South Africa</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Follow Us
-            </h4>
-            <div className="flex space-x-4">
-              <a 
-                href="https://github.com/yourusername" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 
-                         text-gray-600 hover:text-emerald-600 
-                         dark:text-gray-400 dark:hover:text-emerald-400 
-                         transition-colors"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://linkedin.com/in/yourusername" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 
-                         text-gray-600 hover:text-emerald-600 
-                         dark:text-gray-400 dark:hover:text-emerald-400 
-                         transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://twitter.com/yourusername" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 
-                         text-gray-600 hover:text-emerald-600 
-                         dark:text-gray-400 dark:hover:text-emerald-400 
-                         transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
             </div>
           </div>
+
+          {footerLinks.map((group) => (
+            <div key={group.title} className="space-y-6">
+              <h3 className="font-semibold text-lg text-white">
+                {group.title}
+              </h3>
+              <ul className="space-y-4">
+                {group.links.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
+                      className="text-gray-300 hover:text-emerald-400 transition-colors hover:translate-x-1 inline-block transition-transform"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-200/20 dark:border-gray-800/20">
-          <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:justify-between sm:items-center">
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              © {new Date().getFullYear()} AppsoluteAI. All rights reserved.
+        <div className="mt-16 pt-8 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+            <p className="text-gray-400 text-sm">
+              © {currentYear} AppsoluteAI. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 sm:mt-0">
-              <Link 
-                to="/privacy"
-                className="text-sm text-gray-600 hover:text-emerald-600 
-                         dark:text-gray-400 dark:hover:text-emerald-400 
-                         transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link 
-                to="/terms"
-                className="text-sm text-gray-600 hover:text-emerald-600 
-                         dark:text-gray-400 dark:hover:text-emerald-400 
-                         transition-colors"
-              >
-                Terms of Service
-              </Link>
-            </div>
+            <Button
+              to="/prd"
+              variant="primary"
+              size="sm"
+              className="shadow-lg hover:shadow-emerald-500/20 transition-shadow"
+              rightIcon={<ArrowRight className="w-4 h-4" />}
+            >
+              Get Started
+            </Button>
           </div>
         </div>
       </div>
