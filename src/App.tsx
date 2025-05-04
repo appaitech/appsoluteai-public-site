@@ -38,6 +38,7 @@ import { Footer } from './components/layout/Footer';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Terms } from './pages/Terms';
 import { ParticleAnimation } from './components/ui/ParticleAnimation';
+import { Logo } from './components/ui/Logo';
 
 interface FormData {
   name: string;
@@ -336,7 +337,7 @@ export function App() {
       <QueryClientProvider client={queryClient}>
         <Router>
           <div className="flex flex-col min-h-screen">
-            <Header theme={theme} toggleTheme={toggleTheme} />
+            <Header />
             <main className="flex-grow">
               <Seo />
               <CommandMenu />
@@ -349,131 +350,34 @@ export function App() {
                     <section className="pt-20 min-h-[calc(100vh-5rem)] relative overflow-hidden bg-black">
                       <ParticleAnimation />
                       
-                      <div className="container mx-auto px-6 relative z-10 flex items-center justify-center min-h-[calc(100vh-5rem)]">
-                        <div className="text-center py-20">
+                      <div className="container mx-auto px-0 relative z-10 flex items-center justify-center min-h-[calc(100vh-5rem)]">
+                        <div className="text-center py-20 w-full overflow-hidden">
                           <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1.2 }}
-                            className="max-w-5xl mx-auto"
+                            className="flex flex-col items-center"
                           >
-                            <motion.h1 
-                              className="text-8xl md:text-9xl lg:text-[12rem] font-bold mb-8 leading-none relative"
-                              initial={{ opacity: 0, scale: 0.9 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ 
-                                duration: 1,
-                                ease: [0.6, -0.05, 0.01, 0.99]
-                              }}
-                            >
-                              <span className="relative inline-block">
-                                <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                                  App
-                                </span>
-                                <motion.span
-                                  className="absolute inset-0 z-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 blur-2xl"
-                                  animate={{
-                                    scale: [1, 1.2, 1],
-                                    opacity: [0.5, 0.8, 0.5]
-                                  }}
-                                  transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                  }}
+                            <div className="w-[calc(100%+2rem)] -mx-4 overflow-hidden relative group">
+                              {/* Gradient blur effects */}
+                              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40 blur-xl"></div>
+                              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-40 blur-xl"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,black_100%)] opacity-50"></div>
+                              
+                              {/* Logo with blend effects */}
+                              <div className="relative">
+                                <Logo 
+                                  width={2880} 
+                                  height={960} 
+                                  className="opacity-[0.82] w-full mix-blend-screen backdrop-blur-sm
+                                           transition-opacity duration-700 ease-in-out" 
                                 />
-                              </span>
-                              <span className="relative inline-block">
-                                <span className="relative z-10 text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                                  solute
-                                </span>
-                                <motion.span
-                                  className="absolute inset-0 z-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl"
-                                  animate={{
-                                    scale: [1, 1.2, 1],
-                                    opacity: [0.5, 0.8, 0.5]
-                                  }}
-                                  transition={{
-                                    duration: 3,
-                                    delay: 0.2,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                  }}
-                                />
-                              </span>
-                              <span className="relative inline-block ml-4">
-                                <span className="relative z-10 bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(59,130,246,0.2)]">
-                                  AI
-                                </span>
-                                <motion.div
-                                  className="absolute -inset-2 z-0"
-                                  animate={{
-                                    background: [
-                                      'radial-gradient(circle, rgba(52,211,153,0.3) 0%, transparent 70%)',
-                                      'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
-                                      'radial-gradient(circle, rgba(147,51,234,0.3) 0%, transparent 70%)',
-                                    ]
-                                  }}
-                                  transition={{
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                  }}
-                                />
-                                <motion.span
-                                  className="absolute inset-0 z-0 opacity-75 blur-2xl bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500"
-                                  animate={{
-                                    scale: [1, 1.2, 1],
-                                    opacity: [0.3, 0.6, 0.3]
-                                  }}
-                                  transition={{
-                                    duration: 3,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                  }}
-                                />
-                              </span>
-                            </motion.h1>
-
-                            <motion.div
-                              className="relative"
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ 
-                                duration: 1,
-                                delay: 0.5,
-                                ease: [0.6, -0.05, 0.01, 0.99]
-                              }}
-                            >
-                              <motion.p
-                                className="text-3xl md:text-4xl text-gray-300 font-light tracking-widest mt-4 relative z-10"
-                              >
-                                PURE. FAST. INTELLIGENT.
-                              </motion.p>
-                              <motion.div
-                                className="absolute inset-0 z-0 blur-lg"
-                                animate={{
-                                  background: [
-                                    'linear-gradient(90deg, rgba(52,211,153,0.2) 0%, rgba(59,130,246,0.2) 50%, rgba(147,51,234,0.2) 100%)',
-                                    'linear-gradient(90deg, rgba(147,51,234,0.2) 0%, rgba(52,211,153,0.2) 50%, rgba(59,130,246,0.2) 100%)',
-                                  ]
-                                }}
-                                transition={{
-                                  duration: 3,
-                                  repeat: Infinity,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            </motion.div>
-
+                              </div>
+                            </div>
                             <motion.div
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ 
-                                duration: 1,
-                                delay: 1,
-                                ease: [0.6, -0.05, 0.01, 0.99]
-                              }}
+                              transition={{ delay: 0.5, duration: 0.8 }}
                               className="mt-16"
                             >
                               <Link 

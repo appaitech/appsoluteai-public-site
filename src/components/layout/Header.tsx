@@ -6,12 +6,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 
-interface HeaderProps {
-  theme: string;
-  toggleTheme: () => void;
-}
+interface HeaderProps {}
 
-export function Header({ theme, toggleTheme }: HeaderProps) {
+export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeItem, setActiveItem] = useState<string>('');
@@ -21,7 +18,7 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
   const headerBackground = useTransform(
     scrollY,
     [0, 50],
-    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]
+    ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.9)"]
   );
 
   const navigationItems = [
@@ -64,34 +61,36 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
   }, [location]);
 
   return (
-    <header className="navbar-pro">
-      <div className="container">
-        <nav className="flex items-center justify-between h-16 sm:h-20">
-          <div className="flex items-center space-x-8">
+    <motion.header 
+      style={{ backgroundColor: headerBackground }}
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-gray-800/20"
+    >
+      <div className="container mx-auto px-4">
+        <nav className="flex items-center justify-between h-32">
+          <div className="flex items-center space-x-12">
             <Link 
               to="/" 
-              className="hover:opacity-90 transition-opacity flex items-center"
+              className="hover:opacity-90 transition-opacity flex items-center -ml-4"
             >
-              <Logo width={120} height={40} />
+              <Logo width={360} height={120} className="opacity-[0.82] mix-blend-screen" />
             </Link>
             
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center space-x-2">
               {navigationItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   className={`px-4 py-2 rounded-lg transition-all duration-300
-                            text-gray-600 hover:text-emerald-600
-                            dark:text-gray-300 dark:hover:text-emerald-400
-                            ${location.pathname === item.href ? 'bg-emerald-50/50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : ''}
-                            hover:bg-emerald-50/50 dark:hover:bg-emerald-900/30
-                            backdrop-blur-sm`}
+                            text-gray-400 hover:text-emerald-400
+                            ${location.pathname === item.href ? 'bg-emerald-900/30 text-emerald-400' : ''}
+                            hover:bg-emerald-900/30
+                            backdrop-blur-sm text-sm font-medium`}
                 >
                   <span className="flex items-center space-x-2">
                     {item.icon && <item.icon className="w-4 h-4" />}
                     <span>{item.name}</span>
                     {item.isNew && (
-                      <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 dark:from-emerald-500/40 dark:to-blue-500/40 text-emerald-600 dark:text-emerald-400 backdrop-blur-sm">
+                      <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 text-emerald-400 backdrop-blur-sm">
                         New
                       </span>
                     )}
@@ -103,24 +102,19 @@ export function Header({ theme, toggleTheme }: HeaderProps) {
 
           <div className="flex items-center space-x-4">
             <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleTheme}
-              className="!p-2"
-              leftIcon={theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            />
-            
-            <Button
               to="/prd"
               variant="primary"
-              size="md"
-              rightIcon={<Sparkles className="w-4 h-4" />}
+              size="sm"
+              rightIcon={<Sparkles className="w-3.5 h-3.5" />}
+              className="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20
+                         px-4 py-1.5 text-sm font-medium rounded-lg transition-all duration-300
+                         hover:scale-[1.02] active:scale-[0.98]"
             >
               Get Started
             </Button>
           </div>
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 } 

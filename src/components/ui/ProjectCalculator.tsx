@@ -12,29 +12,124 @@ interface SavedEstimate {
 
 const featureCosts = {
   authentication: {
-    ZAR: 20000,    // R20,000
-    USD: 1200,     // $1,200
-    GBP: 950       // £950
+    ZAR: 8000,     // R8,000 - R20,000
+    USD: 424,      // $424 - $1,060
+    GBP: 336,      // £336 - £840
+    maxZAR: 20000
   },
-  payment: {
-    ZAR: 30000,    // R30,000
-    USD: 1800,     // $1,800
-    GBP: 1400      // £1,400
+  userProfiles: {
+    ZAR: 5000,     // R5,000 - R12,000
+    USD: 265,      // $265 - $636
+    GBP: 210,      // £210 - £504
+    maxZAR: 12000
   },
-  realtime: {
-    ZAR: 40000,    // R40,000
-    USD: 2400,     // $2,400
-    GBP: 1900      // £1,900
+  pushNotifications: {
+    ZAR: 5000,     // R5,000 - R15,000
+    USD: 265,      // $265 - $795
+    GBP: 210,      // £210 - £630
+    maxZAR: 15000
   },
-  ai: {
-    ZAR: 50000,    // R50,000
-    USD: 3000,     // $3,000
-    GBP: 2400      // £2,400
+  messaging: {
+    ZAR: 15000,    // R15,000 - R35,000
+    USD: 795,      // $795 - $1,855
+    GBP: 630,      // £630 - £1,470
+    maxZAR: 35000
   },
-  mobile: {
-    ZAR: 30000,    // R30,000
-    USD: 1800,     // $1,800
-    GBP: 1400      // £1,400
+  feedPosts: {
+    ZAR: 12000,    // R12,000 - R30,000
+    USD: 636,      // $636 - $1,590
+    GBP: 504,      // £504 - £1,260
+    maxZAR: 30000
+  },
+  searchFilters: {
+    ZAR: 6000,     // R6,000 - R18,000
+    USD: 318,      // $318 - $954
+    GBP: 252,      // £252 - £756
+    maxZAR: 18000
+  },
+  geoMaps: {
+    ZAR: 10000,    // R10,000 - R30,000
+    USD: 530,      // $530 - $1,590
+    GBP: 420,      // £420 - £1,260
+    maxZAR: 30000
+  },
+  payments: {
+    ZAR: 15000,    // R15,000 - R35,000
+    USD: 795,      // $795 - $1,855
+    GBP: 630,      // £630 - £1,470
+    maxZAR: 35000
+  },
+  ecommerceCart: {
+    ZAR: 12000,    // R12,000 - R25,000
+    USD: 636,      // $636 - $1,325
+    GBP: 504,      // £504 - £1,050
+    maxZAR: 25000
+  },
+  productListings: {
+    ZAR: 10000,    // R10,000 - R22,000
+    USD: 530,      // $530 - $1,166
+    GBP: 420,      // £420 - £924
+    maxZAR: 22000
+  },
+  bookingsCalendar: {
+    ZAR: 12000,    // R12,000 - R28,000
+    USD: 636,      // $636 - $1,484
+    GBP: 504,      // £504 - £1,176
+    maxZAR: 28000
+  },
+  adminDashboard: {
+    ZAR: 20000,    // R20,000 - R50,000
+    USD: 1060,     // $1,060 - $2,650
+    GBP: 840,      // £840 - £2,100
+    maxZAR: 50000
+  },
+  analytics: {
+    ZAR: 4000,     // R4,000 - R10,000
+    USD: 212,      // $212 - $530
+    GBP: 168,      // £168 - £420
+    maxZAR: 10000
+  },
+  cloudStorage: {
+    ZAR: 5000,     // R5,000 - R15,000
+    USD: 265,      // $265 - $795
+    GBP: 210,      // £210 - £630
+    maxZAR: 15000
+  },
+  uiuxPrototype: {
+    ZAR: 8000,     // R8,000 - R25,000
+    USD: 424,      // $424 - $1,325
+    GBP: 336,      // £336 - £1,050
+    maxZAR: 25000
+  },
+  multiLanguage: {
+    ZAR: 6000,     // R6,000 - R15,000
+    USD: 318,      // $318 - $795
+    GBP: 252,      // £252 - £630
+    maxZAR: 15000
+  },
+  offlineMode: {
+    ZAR: 10000,    // R10,000 - R20,000
+    USD: 530,      // $530 - $1,060
+    GBP: 420,      // £420 - £840
+    maxZAR: 20000
+  },
+  apiIntegrations: {
+    ZAR: 5000,     // R5,000 - R20,000
+    USD: 265,      // $265 - $1,060
+    GBP: 210,      // £210 - £840
+    maxZAR: 20000
+  },
+  security2FA: {
+    ZAR: 8000,     // R8,000 - R18,000
+    USD: 424,      // $424 - $954
+    GBP: 336,      // £336 - £756
+    maxZAR: 18000
+  },
+  userRoles: {
+    ZAR: 5000,     // R5,000 - R12,000
+    USD: 265,      // $265 - $636
+    GBP: 210,      // £210 - £504
+    maxZAR: 12000
   }
 };
 
@@ -42,37 +137,162 @@ const initialFeatures = {
   authentication: {
     enabled: false,
     cost: featureCosts.authentication.ZAR,
-    description: "User authentication, authorization, and profile management",
+    maxCost: featureCosts.authentication.maxZAR,
+    description: "Email/password, OAuth (Google/Apple), forgot/reset password",
     complexity: "medium",
     timeEstimate: "1-2 weeks"
   },
-  payment: {
+  userProfiles: {
     enabled: false,
-    cost: featureCosts.payment.ZAR,
-    description: "Secure payment processing and transaction management",
+    cost: featureCosts.userProfiles.ZAR,
+    maxCost: featureCosts.userProfiles.maxZAR,
+    description: "View/edit profiles, avatars, role types",
+    complexity: "low",
+    timeEstimate: "1 week"
+  },
+  pushNotifications: {
+    enabled: false,
+    cost: featureCosts.pushNotifications.ZAR,
+    maxCost: featureCosts.pushNotifications.maxZAR,
+    description: "Local + cloud (Firebase), optional targeting",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
+  },
+  messaging: {
+    enabled: false,
+    cost: featureCosts.messaging.ZAR,
+    maxCost: featureCosts.messaging.maxZAR,
+    description: "1:1 or group chat, real-time (Firestore/Socket), simple UI",
     complexity: "high",
     timeEstimate: "2-3 weeks"
   },
-  realtime: {
+  feedPosts: {
     enabled: false,
-    cost: featureCosts.realtime.ZAR,
-    description: "Real-time updates and live data synchronization",
+    cost: featureCosts.feedPosts.ZAR,
+    maxCost: featureCosts.feedPosts.maxZAR,
+    description: "Scrollable feed, likes, comments, timestamps",
+    complexity: "medium",
+    timeEstimate: "2 weeks"
+  },
+  searchFilters: {
+    enabled: false,
+    cost: featureCosts.searchFilters.ZAR,
+    maxCost: featureCosts.searchFilters.maxZAR,
+    description: "Basic fuzzy search, filters, categories",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
+  },
+  geoMaps: {
+    enabled: false,
+    cost: featureCosts.geoMaps.ZAR,
+    maxCost: featureCosts.geoMaps.maxZAR,
+    description: "Location picker, GPS tracking, Google Maps API",
     complexity: "high",
     timeEstimate: "2-3 weeks"
   },
-  ai: {
+  payments: {
     enabled: false,
-    cost: featureCosts.ai.ZAR,
-    description: "AI/ML features and intelligent automation",
-    complexity: "very-high",
+    cost: featureCosts.payments.ZAR,
+    maxCost: featureCosts.payments.maxZAR,
+    description: "PayFast, Stripe, PayPal integration, checkout",
+    complexity: "high",
+    timeEstimate: "2-3 weeks"
+  },
+  ecommerceCart: {
+    enabled: false,
+    cost: featureCosts.ecommerceCart.ZAR,
+    maxCost: featureCosts.ecommerceCart.maxZAR,
+    description: "Add to cart, quantity, total, checkout",
+    complexity: "medium",
+    timeEstimate: "2 weeks"
+  },
+  productListings: {
+    enabled: false,
+    cost: featureCosts.productListings.ZAR,
+    maxCost: featureCosts.productListings.maxZAR,
+    description: "Upload/create, image + detail views",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
+  },
+  bookingsCalendar: {
+    enabled: false,
+    cost: featureCosts.bookingsCalendar.ZAR,
+    maxCost: featureCosts.bookingsCalendar.maxZAR,
+    description: "Availability, time slot picker, simple logic",
+    complexity: "medium",
+    timeEstimate: "2 weeks"
+  },
+  adminDashboard: {
+    enabled: false,
+    cost: featureCosts.adminDashboard.ZAR,
+    maxCost: featureCosts.adminDashboard.maxZAR,
+    description: "View/edit users/data, moderate content",
+    complexity: "high",
     timeEstimate: "3-4 weeks"
   },
-  mobile: {
+  analytics: {
     enabled: false,
-    cost: featureCosts.mobile.ZAR,
-    description: "Native mobile app development for iOS and Android",
-    complexity: "high",
+    cost: featureCosts.analytics.ZAR,
+    maxCost: featureCosts.analytics.maxZAR,
+    description: "Firebase, Mixpanel, page tracking",
+    complexity: "low",
+    timeEstimate: "1 week"
+  },
+  cloudStorage: {
+    enabled: false,
+    cost: featureCosts.cloudStorage.ZAR,
+    maxCost: featureCosts.cloudStorage.maxZAR,
+    description: "Upload docs/images, S3 or Firebase storage",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
+  },
+  uiuxPrototype: {
+    enabled: false,
+    cost: featureCosts.uiuxPrototype.ZAR,
+    maxCost: featureCosts.uiuxPrototype.maxZAR,
+    description: "High-fidelity Figma designs, interactive flows",
+    complexity: "medium",
     timeEstimate: "2-3 weeks"
+  },
+  multiLanguage: {
+    enabled: false,
+    cost: featureCosts.multiLanguage.ZAR,
+    maxCost: featureCosts.multiLanguage.maxZAR,
+    description: "Translation setup, i18n config",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
+  },
+  offlineMode: {
+    enabled: false,
+    cost: featureCosts.offlineMode.ZAR,
+    maxCost: featureCosts.offlineMode.maxZAR,
+    description: "Local caching, retry logic",
+    complexity: "high",
+    timeEstimate: "2 weeks"
+  },
+  apiIntegrations: {
+    enabled: false,
+    cost: featureCosts.apiIntegrations.ZAR,
+    maxCost: featureCosts.apiIntegrations.maxZAR,
+    description: "Connect to 3rd-party services (per integration)",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
+  },
+  security2FA: {
+    enabled: false,
+    cost: featureCosts.security2FA.ZAR,
+    maxCost: featureCosts.security2FA.maxZAR,
+    description: "OTP, email verification, rate limiting",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
+  },
+  userRoles: {
+    enabled: false,
+    cost: featureCosts.userRoles.ZAR,
+    maxCost: featureCosts.userRoles.maxZAR,
+    description: "Admin/staff/customer tier access",
+    complexity: "medium",
+    timeEstimate: "1-2 weeks"
   }
 };
 
@@ -180,6 +400,12 @@ export const ProjectCalculator = () => {
         ? prev.filter(c => c !== complexity)
         : [...prev, complexity]
     );
+  };
+
+  const formatPriceRange = (min: number, max: number, curr: Currency): string => {
+    const minPrice = Math.round(min * exchangeRates[curr]);
+    const maxPrice = Math.round(max * exchangeRates[curr]);
+    return `${currencySymbols[curr]}${minPrice.toLocaleString()} - ${currencySymbols[curr]}${maxPrice.toLocaleString()}`;
   };
 
   return (
@@ -307,7 +533,7 @@ export const ProjectCalculator = () => {
                       <div className="flex items-center space-x-2">
                         <span className="text-gray-700 dark:text-gray-300 capitalize">{key}</span>
                         <span className="text-sm text-emerald-500">
-                          +{currencySymbols[currency]}{feature.cost.toLocaleString()}
+                          +{formatPriceRange(feature.cost, feature.maxCost, currency)}
                         </span>
                       </div>
                       <span className="text-xs text-gray-500">{feature.timeEstimate}</span>

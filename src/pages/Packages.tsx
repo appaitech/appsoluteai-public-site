@@ -1,20 +1,11 @@
 import { motion } from 'framer-motion';
 import { RegionalPricing } from '@/components/ui/RegionalPricing';
+import { FeaturePricing } from '@/components/pricing/FeaturePricing';
 
 export function Packages() {
   return (
-    <div className="pt-20">
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-50/50 via-transparent to-white/50 
-                          dark:from-emerald-900/20 dark:via-gray-900 dark:to-gray-900" />
-          {/* Animated background elements */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-200/20 dark:bg-emerald-900/20 
-                         rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-200/20 dark:bg-teal-900/20 
-                         rounded-full mix-blend-multiply dark:mix-blend-lighten blur-3xl animate-float delay-300" />
-        </div>
-
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+      <section className="py-20">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             {/* Main Heading */}
@@ -50,6 +41,11 @@ export function Packages() {
 
             {/* Pricing Section */}
             <RegionalPricing />
+
+            {/* Feature Pricing Section */}
+            <div className="mt-32">
+              <FeaturePricing />
+            </div>
           </div>
         </div>
       </section>

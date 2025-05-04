@@ -1,26 +1,25 @@
-import { useTheme } from '@/hooks/useTheme';
-import logoDark from '../../assets/logo-dark.svg';
-import logoLight from '../../assets/logo-light.svg';
+import React from 'react';
+import logoDark from "../../assets/logo-dark.png";
+import logoLight from "../../assets/logo-dark.png"; // Temporarily using dark logo for both until light logo is added
 
 interface LogoProps {
   className?: string;
-  width?: number | string;
-  height?: number | string;
+  width?: number;
+  height?: number;
 }
 
-export const Logo = ({ className = '', width = 120, height = 40 }: LogoProps) => {
-  const { isDarkMode } = useTheme();
-
+export const Logo: React.FC<LogoProps> = ({ className = "", width = 120, height = 40 }) => {
   return (
-    <img
-      src={isDarkMode ? logoDark : logoLight}
-      alt="AppsoluteAI Logo"
-      className={`transition-opacity duration-200 ${className}`}
-      style={{
-        width: typeof width === 'number' ? `${width}px` : width,
-        height: typeof height === 'number' ? `${height}px` : height,
-      }}
-    />
+    <picture>
+      <source srcSet={logoLight} media="(prefers-color-scheme: dark)" />
+      <img
+        src={logoDark}
+        alt="Appsolute AI Logo"
+        width={width}
+        height={height}
+        className={className}
+      />
+    </picture>
   );
 };
 
