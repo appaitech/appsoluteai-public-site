@@ -23,7 +23,7 @@ export function FloatingAction() {
               Call Us
             </button>
             <button 
-              onClick={() => window.location.href = 'mailto:contact@appsnap.dev'}
+              onClick={() => window.location.href = 'mailto:contact@appsoluteai.dev'}
               className="btn-base flex items-center bg-white text-emerald-600 px-4 py-2 rounded-full shadow-lg hover:bg-emerald-50"
             >
               <Mail className="w-4 h-4 mr-2" />

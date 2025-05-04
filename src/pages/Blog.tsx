@@ -41,7 +41,7 @@ export function BlogPage() {
       <div className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white py-16">
         <div className="container mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            AppSnap Blog
+            AppsoluteAI Blog
           </h1>
           <p className="text-xl text-emerald-50 max-w-2xl">
             Insights, tutorials, and trends in app development, AI, and technology

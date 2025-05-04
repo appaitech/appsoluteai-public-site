@@ -12,8 +12,8 @@ export function ProjectCalculatorPage() {
     <div className="min-h-screen py-20 bg-gradient-to-b from-white to-emerald-50 dark:from-gray-900 dark:to-emerald-900/10">
       <div className="container mx-auto px-6">
         <AnimatedHeading 
-          variant="glitch"
-          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-8"
+          variant="gradient"
+          className="text-5xl md:text-6xl font-bold text-center mb-6 font-display tracking-normal"
         >
           Project Planning Hub
         </AnimatedHeading>

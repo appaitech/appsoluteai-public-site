@@ -6,7 +6,7 @@ export function Testimonials() {
     {
       name: "Sarah Johnson",
       role: "CEO, TechStart",
-      content: "AppSnap delivered our MVP in just 2 weeks. The quality and speed were exceptional!",
+      content: "AppsoluteAI delivered our MVP in just 2 weeks. The quality and speed were exceptional!",
       rating: 5,
       avatar: "https://ui-avatars.com/api/?name=Sarah+Johnson&background=22c55e&color=fff"
     },

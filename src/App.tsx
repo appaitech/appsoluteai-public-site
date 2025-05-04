@@ -359,19 +359,24 @@ export function App() {
                             className="flex flex-col items-center"
                           >
                             <div className="w-[calc(100%+2rem)] -mx-4 overflow-hidden relative group">
-                              {/* Gradient blur effects */}
-                              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40 blur-xl"></div>
-                              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-40 blur-xl"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,black_100%)] opacity-50"></div>
+                              {/* Enhanced gradient blur effects */}
+                              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-30 blur-2xl"></div>
+                              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-30 blur-2xl"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,black_100%)] opacity-40"></div>
                               
-                              {/* Logo with blend effects */}
-                              <div className="relative">
+                              {/* Logo with enhanced blend effects */}
+                              <div className="relative px-4">
                                 <Logo 
                                   width={2880} 
                                   height={960} 
-                                  className="opacity-[0.82] w-full mix-blend-screen backdrop-blur-sm
-                                           transition-opacity duration-700 ease-in-out" 
+                                  className="opacity-90 w-full mix-blend-plus-lighter filter contrast-125 saturate-150
+                                           transition-all duration-700 ease-in-out
+                                           hover:opacity-100 hover:saturate-200" 
                                 />
+                                
+                                {/* Glow effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-purple-500/10 mix-blend-overlay"></div>
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/20 mix-blend-overlay"></div>
                               </div>
                             </div>
                             <motion.div
@@ -395,14 +400,16 @@ export function App() {
                     {/* Packages Section */}
                     <section id="packages" className="section gradient-pro-bg">
                       <div className="container">
-                        <div className="text-center mb-12">
+                        <div className="text-center mb-16">
                           <AnimatedHeading 
-                            variant="glitch"
-                            className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4"
+                            variant="gradient"
+                            className="text-5xl md:text-6xl font-bold text-center mb-6 font-display tracking-normal"
                           >
                             Our Packages
                           </AnimatedHeading>
-                          <p className="subtitle">Choose the perfect plan for your project</p>
+                          <p className="subtitle text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                            Choose the perfect plan for your project
+                          </p>
                         </div>
                         <RegionalPricing />
                       </div>
@@ -413,8 +420,8 @@ export function App() {
                                                dark:from-emerald-900/40 dark:via-emerald-800/20 dark:to-gray-900">
                       <div className="container mx-auto px-6">
                         <AnimatedHeading 
-                          variant="glitch"
-                          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
+                          variant="gradient"
+                          className="text-5xl md:text-6xl font-bold text-center mb-16 font-display tracking-normal"
                         >
                           What Our Clients Say
                         </AnimatedHeading>
@@ -474,14 +481,14 @@ export function App() {
                           viewport={{ once: true }}
                           className="max-w-2xl mx-auto"
                         >
-                          <div className="text-center mb-12">
+                          <div className="text-center mb-16">
                             <AnimatedHeading 
-                              variant="glitch"
-                              className="text-3xl md:text-4xl font-bold text-center text-white mb-4"
+                              variant="gradient"
+                              className="text-5xl md:text-6xl font-bold text-center mb-6 font-display tracking-normal"
                             >
                               Get In Touch
                             </AnimatedHeading>
-                            <p className="text-gray-300">
+                            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
                               Ready to transform your idea into reality? Let's start the conversation.
                             </p>
                           </div>
@@ -543,9 +550,9 @@ export function App() {
 
                               <div className="flex items-center justify-between pt-4">
                                 <div className="flex items-center space-x-6 text-gray-600 dark:text-gray-400">
-                                  <a href="mailto:contact@appsnap.dev" className="flex items-center space-x-2 hover:text-emerald-500 transition-colors">
-                                    <Mail className="w-5 h-5" />
-                                    <span>contact@appsnap.dev</span>
+                                  <a href="mailto:contact@appsoluteai.dev" className="flex items-center space-x-2 hover:text-emerald-500 transition-colors">
+                                    <Mail className="h-5 w-5" />
+                                    <span>contact@appsoluteai.dev</span>
                                   </a>
                                   <a href="tel:+1234567890" className="flex items-center space-x-2 hover:text-emerald-500 transition-colors">
                                     <Phone className="w-5 h-5" />

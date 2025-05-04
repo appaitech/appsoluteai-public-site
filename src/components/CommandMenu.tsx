@@ -72,7 +72,7 @@ export function CommandMenu() {
                 </Command.Item>
               </Command.Group>
               <Command.Group heading="Actions">
-                <Command.Item onSelect={() => { document.location.href = 'mailto:contact@appsnap.dev'; }}>
+                <Command.Item onSelect={() => { document.location.href = 'mailto:contact@appsoluteai.dev'; }}>
                   Contact Support
                 </Command.Item>
                 <Command.Item onSelect={() => { /* Add your logic */ }}>

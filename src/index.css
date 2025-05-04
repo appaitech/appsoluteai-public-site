@@ -268,8 +268,8 @@
 }
 
 .animate-gradient {
-  background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
+  background-size: 200% 200%;
 }
 
 .animate-glow {
@@ -501,25 +501,83 @@ html {
   }
 }
 
-.gradient-animate {
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
-}
-
-/* Enhance the existing animations */
-.animate-bounce {
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+@keyframes gradient-shift-slow {
+  0% {
+    background-position: 0% 50%;
   }
   50% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    background-position: 100% 50%;
   }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient-shift 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-gradient-slow {
+  animation: gradient-shift-slow 6s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes neon-pulse {
+  0% {
+    text-shadow: 0 0 7px #10b981,
+                 0 0 10px #10b981,
+                 0 0 21px #10b981;
+  }
+  50% {
+    text-shadow: 0 0 10px #10b981,
+                 0 0 15px #10b981,
+                 0 0 30px #10b981;
+  }
+  100% {
+    text-shadow: 0 0 7px #10b981,
+                 0 0 10px #10b981,
+                 0 0 21px #10b981;
+  }
+}
+
+.animate-neon {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cyber-glitch {
+  0% {
+    clip-path: inset(50% 0 30% 0);
+    transform: skew(0.15turn, 2deg);
+  }
+  5% {
+    clip-path: inset(20% 0 60% 0);
+    transform: skew(0.25turn, -2deg);
+  }
+  10% {
+    clip-path: inset(40% 0 40% 0);
+    transform: skew(-0.25turn, 1deg);
+  }
+  15% {
+    clip-path: inset(80% 0 5% 0);
+    transform: skew(0.15turn, -1deg);
+  }
+  20% {
+    clip-path: inset(10% 0 85% 0);
+    transform: skew(-0.15turn, 2deg);
+  }
+  25% {
+    clip-path: inset(30% 0 60% 0);
+    transform: skew(0.25turn, -2deg);
+  }
+  100% {
+    clip-path: inset(50% 0 30% 0);
+    transform: skew(0.15turn, 2deg);
+  }
+}
+
+.animate-cyber {
+  animation: cyber-glitch 4s steps(2, end) infinite;
 }
 
 /* Update your CSS variables */
@@ -1070,4 +1128,34 @@ a, button, input, div {
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+/* Refined shimmer animation for headings */
+@keyframes shimmer-slow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-shimmer-slow {
+  animation: shimmer-slow 8s ease infinite;
+}
+
+/* Remove unused animations */
+.group-hover\:animate-shine {
+  display: none;
+}
+
+.animate-pulse-subtle {
+  display: none;
+}
+
+.animate-gradient-slow {
+  display: none;
 }

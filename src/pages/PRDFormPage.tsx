@@ -1,4 +1,4 @@
-import { useState, type FormEvent, ChangeEvent } from 'react';
+import { useState, useEffect, useRef, type FormEvent, ChangeEvent } from 'react';
 import { AnimatedHeading } from '@/components/ui/AnimatedHeading';
 import { motion } from 'framer-motion';
 import { 
@@ -235,6 +235,60 @@ export function PRDFormPage() {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [costEstimate, setCostEstimate] = useState({ min: 0, max: 0 });
+  const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  const setSectionRef = (id: string) => (el: HTMLDivElement | null): void => {
+    sectionRefs.current[id] = el;
+  };
+
+  useEffect(() => {
+    // Initialize refs for all sections
+    FORM_SECTIONS.forEach(section => {
+      sectionRefs.current[section.id] = null;
+    });
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150; // Reduced from 200px for more precise detection
+      const headerOffset = 150; // Offset for header and navigation
+
+      // Find the current section with improved accuracy
+      let currentSectionId = FORM_SECTIONS[0].id;
+      let closestDistance = Infinity;
+      
+      for (const section of FORM_SECTIONS) {
+        const element = sectionRefs.current[section.id];
+        if (element) {
+          const distance = Math.abs(element.offsetTop - headerOffset - scrollPosition);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            currentSectionId = section.id;
+          }
+        }
+      }
+
+      setCurrentSection(currentSectionId);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = sectionRefs.current[sectionId];
+    if (element) {
+      const headerOffset = 150; // Consistent offset for better alignment
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const calculateEstimate = (data: PRDFormData) => {
     let basePrice = 10000;
@@ -301,26 +355,30 @@ export function PRDFormPage() {
 
   return (
     <div className="min-h-screen py-20 bg-gradient-to-b from-white to-emerald-50 
-                  dark:from-gray-900 dark:to-emerald-900/10 transition-colors duration-300">
+                    dark:from-gray-900 dark:to-emerald-900/10 transition-colors duration-300">
       <div className="fixed top-20 left-0 w-full bg-white/90 dark:bg-gray-800/90 
-                      backdrop-blur-md shadow-md z-40 transition-colors duration-300">
+                      backdrop-blur-md shadow-md z-40 transition-all duration-500">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2 md:gap-4">
             {FORM_SECTIONS.map((section, index) => (
-              <div
+              <button
                 key={section.id}
-                className={`flex flex-col items-center ${
-                  currentSection === section.id
-                    ? 'text-emerald-500'
-                    : 'text-gray-400'
-                }`}
+                onClick={() => scrollToSection(section.id)}
+                className={`group flex flex-col items-center transition-all duration-500 cursor-pointer
+                          px-2 py-1 rounded-lg
+                          ${currentSection === section.id
+                            ? 'text-emerald-500 scale-105 bg-emerald-50 dark:bg-emerald-900/20'
+                            : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10'}`}
               >
-                <section.icon className="w-5 h-5" />
-                <span className="text-xs mt-1">{section.title}</span>
+                <section.icon className={`w-5 h-5 transition-transform duration-500
+                                     ${currentSection === section.id ? 'transform scale-110' : 'group-hover:scale-105'}`} />
+                <span className="text-xs mt-1.5 font-medium whitespace-nowrap">{section.title}</span>
                 {index < FORM_SECTIONS.length - 1 && (
-                  <ArrowRight className="w-4 h-4 ml-4" />
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+                    <ArrowRight className="w-4 h-4 ml-4 opacity-30" />
+                  </div>
                 )}
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -353,8 +411,8 @@ export function PRDFormPage() {
 
       <div className="container mx-auto px-6">
         <AnimatedHeading 
-          variant="glitch"
-          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-8"
+          variant="gradient"
+          className="text-5xl md:text-6xl font-bold text-center mb-6 font-display tracking-normal"
         >
           Project Requirements Document
         </AnimatedHeading>
@@ -367,11 +425,13 @@ export function PRDFormPage() {
         >
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Section: Basic Information */}
-            <div className="space-y-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <FileText className="w-6 h-6 text-emerald-500" />
-                <span>Basic Information</span>
-              </h2>
+            <div ref={setSectionRef('basic')} className="space-y-6">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Basic Information
+              </AnimatedHeading>
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -463,11 +523,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Section: Project Overview */}
-            <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <Globe className="w-6 h-6 text-emerald-500" />
-                <span>1. Project Overview</span>
-              </h2>
+            <div ref={setSectionRef('overview')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Project Overview
+              </AnimatedHeading>
 
               <div className="space-y-6">
                 <div>
@@ -552,11 +614,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Features & Functionality Section */}
-            <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <Settings className="w-6 h-6 text-emerald-500" />
-                <span>3. Features & Functionality</span>
-              </h2>
+            <div ref={setSectionRef('features')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Features & Functionality
+              </AnimatedHeading>
 
               {/* Key Features */}
               <div className="space-y-4">
@@ -612,7 +676,7 @@ export function PRDFormPage() {
                         Action {num}
                       </label>
                       <select
-                        value={formData[`userAction${num}` as keyof typeof formData]}
+                        value={formData[`userAction${num}` as keyof typeof formData] as string}
                         onChange={(e) => setFormData({ ...formData, [`userAction${num}`]: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
                                   bg-white dark:bg-gray-700 text-gray-900 dark:text-white
@@ -647,11 +711,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Design & User Experience Section */}
-            <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <Palette className="w-6 h-6 text-emerald-500" />
-                <span>4. Design & User Experience</span>
-              </h2>
+            <div ref={setSectionRef('design')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Design & User Experience
+              </AnimatedHeading>
 
               {/* Design Style */}
               <div className="space-y-4">
@@ -715,11 +781,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Technical & Platform Requirements */}
-            <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <Server className="w-6 h-6 text-emerald-500" />
-                <span>5. Technical & Platform Requirements</span>
-              </h2>
+            <div ref={setSectionRef('technical')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Technical & Platform Requirements
+              </AnimatedHeading>
 
               {/* Platforms */}
               <div className="space-y-4">
@@ -815,11 +883,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Timeline */}
-            <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <Clock className="w-6 h-6 text-emerald-500" />
-                <span>6. Timeline</span>
-              </h2>
+            <div ref={setSectionRef('timeline')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Timeline
+              </AnimatedHeading>
 
               <div className="space-y-4">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -850,11 +920,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Security & Compliance */}
-            <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <Shield className="w-6 h-6 text-emerald-500" />
-                <span>7. Security & Compliance</span>
-              </h2>
+            <div ref={setSectionRef('security')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Security & Compliance
+              </AnimatedHeading>
 
               <div className="space-y-4">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -890,11 +962,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Maintenance & Support */}
-            <div className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-                <Settings className="w-6 h-6 text-emerald-500" />
-                <span>8. Maintenance & Support</span>
-              </h2>
+            <div ref={setSectionRef('maintenance')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-2xl md:text-3xl font-semibold"
+              >
+                Maintenance & Support
+              </AnimatedHeading>
 
               <div className="space-y-4">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">

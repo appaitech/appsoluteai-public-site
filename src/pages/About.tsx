@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { InnovationCards } from '@/components/ui/InnovationCards';
 import { ArrowRight } from 'lucide-react';
+import { AnimatedHeading } from '@/components/ui/AnimatedHeading';
 
 export function About() {
   return (
@@ -38,12 +39,12 @@ export function About() {
                 </span>
               </motion.div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 
-                            bg-gradient-to-r from-emerald-600 to-teal-500 
-                            dark:from-emerald-400 dark:to-teal-300
-                            bg-clip-text text-transparent">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-5xl md:text-6xl font-bold text-center mb-6 font-display tracking-normal"
+              >
                 Accelerating Digital Innovation
-              </h1>
+              </AnimatedHeading>
 
               <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
                 Transforming ideas into powerful digital solutions
@@ -63,9 +64,12 @@ export function About() {
               transition={{ duration: 0.6 }}
               className="text-center mb-32"
             >
-              <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
+              <AnimatedHeading 
+                variant="gradient"
+                className="text-4xl md:text-5xl font-bold text-center mb-12 font-display tracking-normal"
+              >
                 Our Development Process
-              </h2>
+              </AnimatedHeading>
               <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                 {[
                   { step: "1", title: "Dream", desc: "Share your vision" },

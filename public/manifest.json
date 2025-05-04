@@ -1,7 +1,7 @@
 {
-  "name": "AppSnap - Rapid App Development",
-  "short_name": "AppSnap",
-  "description": "Transform your ideas into reality with AppSnap's rapid app development services",
+  "name": "AppsoluteAI - Rapid App Development",
+  "short_name": "AppsoluteAI",
+  "description": "Transform your ideas into reality with AppsoluteAI's rapid app development services",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

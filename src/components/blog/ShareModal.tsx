@@ -9,7 +9,7 @@ interface ShareModalProps {
 }
 
 export function ShareModal({ post, onClose }: ShareModalProps) {
-  const shareUrl = `https://appsnap.dev/blog/${post.id}`;
+  const shareUrl = `https://appsoluteai.dev/blog/${post.id}`;
 
   const shareLinks = {
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`,
