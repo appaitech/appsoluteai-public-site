@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Zap, Code, Rocket, Clock, CheckCircle, Package, 
-  Users, ArrowRight, Mail, Phone, MapPin, Star,
-  Menu, X, Send, FileText, Upload, AlertCircle, Shield,
-  BarChart, Palette, Cloud, Info
+  Menu, X, Send, Star, Mail, Phone, Link
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -17,7 +14,6 @@ import { useScrollPosition } from './hooks/use-scroll-position';
 import { ChatBot } from './components/ui/ChatBot';
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { SectionTransition } from './components/ui/SectionTransition';
-import { Tooltip } from './components/ui/Tooltip';
 import { Blog } from './components/sections/Blog';
 import { HeartsAnimation } from './components/ui/HeartsAnimation';
 import { useDarkMode } from '@/hooks/useDarkMode';
@@ -25,13 +21,10 @@ import { AnimatedHeading } from './components/ui/AnimatedHeading';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { ProjectCalculator } from './components/ui/ProjectCalculator';
 import { TimelineVisualizer } from './components/ui/TimelineVisualizer';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
-import { ProjectCalculatorPage } from './pages/ProjectCalculator';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link as RouterLink } from 'react-router-dom';
 import { PRDFormPage } from './pages/PRDFormPage';
 import { NotFound } from './pages/NotFound';
 import { HelmetProvider } from 'react-helmet-async';
-import { RegionalPricing } from './components/ui/RegionalPricing';
-import { InnovationCards } from './components/ui/InnovationCards';
 import { About } from './pages/About';
 import { Packages } from './pages/Packages';
 import { Footer } from './components/layout/Footer';
@@ -39,74 +32,15 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { Terms } from './pages/Terms';
 import { ParticleAnimation } from './components/ui/ParticleAnimation';
 import { Logo } from './components/ui/Logo';
+import { PRDFormData } from './types/prd';
+import { RegionalPricing } from './components/ui/RegionalPricing';
+import ProjectExamples from './pages/ProjectExamples';
+import { Button } from './components/ui/Button';
 
 interface FormData {
   name: string;
   email: string;
   message: string;
-}
-
-interface PRDFormData {
-  projectName: string;
-  companyName: string;
-  contactEmail: string;
-  phone: string;
-  budget: string;
-  timeline: string;
-  platform: string[];
-  description: string;
-  features: string;
-  targetAudience: string;
-  competitors: string;
-  successCriteria: string;
-  additionalInfo: string;
-  termsAccepted: boolean;
-  industryType: string;
-  existingTech: string;
-  userAuthentication: boolean;
-  dataStorage: boolean;
-  thirdPartyIntegrations: string[];
-  monetizationStrategy: string;
-  scalabilityRequirements: string;
-  accessibilityRequirements: string;
-  securityRequirements: string[];
-  analyticsRequirements: boolean;
-  multiLanguageSupport: boolean;
-  offlineCapabilities: boolean;
-  projectGoals: string;
-  projectScope: string;
-  keyMilestones: string[];
-  projectConstraints: string;
-  businessModel: string;
-  revenueStreams: string[];
-  marketStrategy: string;
-  competitiveAdvantage: string;
-  successMetrics: string[];
-  userPersonas: string;
-  userJourneys: string;
-  userPainPoints: string;
-  accessibilityNeeds: string[];
-  preferredTechnologies: string[];
-  existingSystemsIntegration: string;
-  performanceRequirements: {
-    loadTime: string;
-    concurrent: string;
-    availability: string;
-  };
-  deviceSupport: string[];
-  browserSupport: string[];
-  dataTypes: string[];
-  dataRetention: string;
-  backupStrategy: string;
-  dataCompliance: string[];
-  brandGuidelines: boolean;
-  designPreferences: string;
-  moodboardLinks: string;
-  specialAnimations: boolean;
-  hostingPreference: string;
-  maintenancePlan: string;
-  monitoringRequirements: string[];
-  updateFrequency: string;
 }
 
 interface TooltipState {
@@ -385,12 +319,14 @@ export function App() {
                               transition={{ delay: 0.5, duration: 0.8 }}
                               className="mt-16"
                             >
-                              <Link 
-                                to="/prd" 
-                                className="btn-pro-primary px-12 py-6 text-xl bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 transition-all duration-300 rounded-xl shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+                              <Button
+                                to="/prd"
+                                variant="primary"
+                                size="lg"
+                                className=""
                               >
                                 Start Your Journey
-                              </Link>
+                              </Button>
                             </motion.div>
                           </motion.div>
                         </div>
@@ -591,9 +527,9 @@ export function App() {
                   </>
                 } />
                 <Route path="/packages" element={<Packages />} />
-                <Route path="/calculator" element={<ProjectCalculatorPage />} />
                 <Route path="/prd" element={<PRDFormPage />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/project-examples" element={<ProjectExamples />} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<Terms />} />

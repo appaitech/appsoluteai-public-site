@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Calculator, DollarSign, Clock, Save, Sparkles, AlertCircle, PoundSterling } from 'lucide-react';
+import { Calculator, DollarSign, Clock, Save, Sparkles, AlertCircle, PoundSterling, 
+  User, Bell, MessageCircle, List, Filter, MapPin, CreditCard, ShoppingCart, 
+  Box, Calendar, BarChart, Cloud, PenTool, Globe, WifiOff, Link, Shield, Users, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 
@@ -12,131 +14,191 @@ interface SavedEstimate {
 
 const featureCosts = {
   authentication: {
-    ZAR: 8000,     // R8,000 - R20,000
-    USD: 424,      // $424 - $1,060
-    GBP: 336,      // £336 - £840
-    maxZAR: 20000
+    ZAR: 8000,
+    USD: 424,
+    GBP: 336,
+    maxZAR: 20000,
+    avgZAR: Math.round((8000 + 20000) / 2),
+    avgUSD: Math.round((424 + 1060) / 2),
+    avgGBP: Math.round((336 + 840) / 2)
   },
   userProfiles: {
-    ZAR: 5000,     // R5,000 - R12,000
-    USD: 265,      // $265 - $636
-    GBP: 210,      // £210 - £504
-    maxZAR: 12000
+    ZAR: 5000,
+    USD: 265,
+    GBP: 210,
+    maxZAR: 12000,
+    avgZAR: Math.round((5000 + 12000) / 2),
+    avgUSD: Math.round((265 + 636) / 2),
+    avgGBP: Math.round((210 + 504) / 2)
   },
   pushNotifications: {
-    ZAR: 5000,     // R5,000 - R15,000
-    USD: 265,      // $265 - $795
-    GBP: 210,      // £210 - £630
-    maxZAR: 15000
+    ZAR: 5000,
+    USD: 265,
+    GBP: 210,
+    maxZAR: 15000,
+    avgZAR: Math.round((5000 + 15000) / 2),
+    avgUSD: Math.round((265 + 795) / 2),
+    avgGBP: Math.round((210 + 630) / 2)
   },
   messaging: {
-    ZAR: 15000,    // R15,000 - R35,000
-    USD: 795,      // $795 - $1,855
-    GBP: 630,      // £630 - £1,470
-    maxZAR: 35000
+    ZAR: 15000,
+    USD: 795,
+    GBP: 630,
+    maxZAR: 35000,
+    avgZAR: Math.round((15000 + 35000) / 2),
+    avgUSD: Math.round((795 + 1855) / 2),
+    avgGBP: Math.round((630 + 1470) / 2)
   },
   feedPosts: {
-    ZAR: 12000,    // R12,000 - R30,000
-    USD: 636,      // $636 - $1,590
-    GBP: 504,      // £504 - £1,260
-    maxZAR: 30000
+    ZAR: 12000,
+    USD: 636,
+    GBP: 504,
+    maxZAR: 30000,
+    avgZAR: Math.round((12000 + 30000) / 2),
+    avgUSD: Math.round((636 + 1590) / 2),
+    avgGBP: Math.round((504 + 1260) / 2)
   },
   searchFilters: {
-    ZAR: 6000,     // R6,000 - R18,000
-    USD: 318,      // $318 - $954
-    GBP: 252,      // £252 - £756
-    maxZAR: 18000
+    ZAR: 6000,
+    USD: 318,
+    GBP: 252,
+    maxZAR: 18000,
+    avgZAR: Math.round((6000 + 18000) / 2),
+    avgUSD: Math.round((318 + 954) / 2),
+    avgGBP: Math.round((252 + 756) / 2)
   },
   geoMaps: {
-    ZAR: 10000,    // R10,000 - R30,000
-    USD: 530,      // $530 - $1,590
-    GBP: 420,      // £420 - £1,260
-    maxZAR: 30000
+    ZAR: 10000,
+    USD: 530,
+    GBP: 420,
+    maxZAR: 30000,
+    avgZAR: Math.round((10000 + 30000) / 2),
+    avgUSD: Math.round((530 + 1590) / 2),
+    avgGBP: Math.round((420 + 1260) / 2)
   },
   payments: {
-    ZAR: 15000,    // R15,000 - R35,000
-    USD: 795,      // $795 - $1,855
-    GBP: 630,      // £630 - £1,470
-    maxZAR: 35000
+    ZAR: 15000,
+    USD: 795,
+    GBP: 630,
+    maxZAR: 35000,
+    avgZAR: Math.round((15000 + 35000) / 2),
+    avgUSD: Math.round((795 + 1855) / 2),
+    avgGBP: Math.round((630 + 1470) / 2)
   },
   ecommerceCart: {
-    ZAR: 12000,    // R12,000 - R25,000
-    USD: 636,      // $636 - $1,325
-    GBP: 504,      // £504 - £1,050
-    maxZAR: 25000
+    ZAR: 12000,
+    USD: 636,
+    GBP: 504,
+    maxZAR: 25000,
+    avgZAR: Math.round((12000 + 25000) / 2),
+    avgUSD: Math.round((636 + 1325) / 2),
+    avgGBP: Math.round((504 + 1050) / 2)
   },
   productListings: {
-    ZAR: 10000,    // R10,000 - R22,000
-    USD: 530,      // $530 - $1,166
-    GBP: 420,      // £420 - £924
-    maxZAR: 22000
+    ZAR: 10000,
+    USD: 530,
+    GBP: 420,
+    maxZAR: 22000,
+    avgZAR: Math.round((10000 + 22000) / 2),
+    avgUSD: Math.round((530 + 1166) / 2),
+    avgGBP: Math.round((420 + 924) / 2)
   },
   bookingsCalendar: {
-    ZAR: 12000,    // R12,000 - R28,000
-    USD: 636,      // $636 - $1,484
-    GBP: 504,      // £504 - £1,176
-    maxZAR: 28000
+    ZAR: 12000,
+    USD: 636,
+    GBP: 504,
+    maxZAR: 28000,
+    avgZAR: Math.round((12000 + 28000) / 2),
+    avgUSD: Math.round((636 + 1484) / 2),
+    avgGBP: Math.round((504 + 1176) / 2)
   },
   adminDashboard: {
-    ZAR: 20000,    // R20,000 - R50,000
-    USD: 1060,     // $1,060 - $2,650
-    GBP: 840,      // £840 - £2,100
-    maxZAR: 50000
+    ZAR: 20000,
+    USD: 1060,
+    GBP: 840,
+    maxZAR: 50000,
+    avgZAR: Math.round((20000 + 50000) / 2),
+    avgUSD: Math.round((1060 + 2650) / 2),
+    avgGBP: Math.round((840 + 2100) / 2)
   },
   analytics: {
-    ZAR: 4000,     // R4,000 - R10,000
-    USD: 212,      // $212 - $530
-    GBP: 168,      // £168 - £420
-    maxZAR: 10000
+    ZAR: 4000,
+    USD: 212,
+    GBP: 168,
+    maxZAR: 10000,
+    avgZAR: Math.round((4000 + 10000) / 2),
+    avgUSD: Math.round((212 + 530) / 2),
+    avgGBP: Math.round((168 + 420) / 2)
   },
   cloudStorage: {
-    ZAR: 5000,     // R5,000 - R15,000
-    USD: 265,      // $265 - $795
-    GBP: 210,      // £210 - £630
-    maxZAR: 15000
+    ZAR: 5000,
+    USD: 265,
+    GBP: 210,
+    maxZAR: 15000,
+    avgZAR: Math.round((5000 + 15000) / 2),
+    avgUSD: Math.round((265 + 795) / 2),
+    avgGBP: Math.round((210 + 630) / 2)
   },
   uiuxPrototype: {
-    ZAR: 8000,     // R8,000 - R25,000
-    USD: 424,      // $424 - $1,325
-    GBP: 336,      // £336 - £1,050
-    maxZAR: 25000
+    ZAR: 8000,
+    USD: 424,
+    GBP: 336,
+    maxZAR: 25000,
+    avgZAR: Math.round((8000 + 25000) / 2),
+    avgUSD: Math.round((424 + 1325) / 2),
+    avgGBP: Math.round((336 + 1050) / 2)
   },
   multiLanguage: {
-    ZAR: 6000,     // R6,000 - R15,000
-    USD: 318,      // $318 - $795
-    GBP: 252,      // £252 - £630
-    maxZAR: 15000
+    ZAR: 6000,
+    USD: 318,
+    GBP: 252,
+    maxZAR: 15000,
+    avgZAR: Math.round((6000 + 15000) / 2),
+    avgUSD: Math.round((318 + 795) / 2),
+    avgGBP: Math.round((252 + 630) / 2)
   },
   offlineMode: {
-    ZAR: 10000,    // R10,000 - R20,000
-    USD: 530,      // $530 - $1,060
-    GBP: 420,      // £420 - £840
-    maxZAR: 20000
+    ZAR: 10000,
+    USD: 530,
+    GBP: 420,
+    maxZAR: 20000,
+    avgZAR: Math.round((10000 + 20000) / 2),
+    avgUSD: Math.round((530 + 1060) / 2),
+    avgGBP: Math.round((420 + 840) / 2)
   },
   apiIntegrations: {
-    ZAR: 5000,     // R5,000 - R20,000
-    USD: 265,      // $265 - $1,060
-    GBP: 210,      // £210 - £840
-    maxZAR: 20000
+    ZAR: 5000,
+    USD: 265,
+    GBP: 210,
+    maxZAR: 20000,
+    avgZAR: Math.round((5000 + 20000) / 2),
+    avgUSD: Math.round((265 + 1060) / 2),
+    avgGBP: Math.round((210 + 840) / 2)
   },
   security2FA: {
-    ZAR: 8000,     // R8,000 - R18,000
-    USD: 424,      // $424 - $954
-    GBP: 336,      // £336 - £756
-    maxZAR: 18000
+    ZAR: 8000,
+    USD: 424,
+    GBP: 336,
+    maxZAR: 18000,
+    avgZAR: Math.round((8000 + 18000) / 2),
+    avgUSD: Math.round((424 + 954) / 2),
+    avgGBP: Math.round((336 + 756) / 2)
   },
   userRoles: {
-    ZAR: 5000,     // R5,000 - R12,000
-    USD: 265,      // $265 - $636
-    GBP: 210,      // £210 - £504
-    maxZAR: 12000
+    ZAR: 5000,
+    USD: 265,
+    GBP: 210,
+    maxZAR: 12000,
+    avgZAR: Math.round((5000 + 12000) / 2),
+    avgUSD: Math.round((265 + 636) / 2),
+    avgGBP: Math.round((210 + 504) / 2)
   }
 };
 
 const initialFeatures = {
   authentication: {
     enabled: false,
-    cost: featureCosts.authentication.ZAR,
+    cost: featureCosts.authentication.avgZAR,
     maxCost: featureCosts.authentication.maxZAR,
     description: "Email/password, OAuth (Google/Apple), forgot/reset password",
     complexity: "medium",
@@ -144,7 +206,7 @@ const initialFeatures = {
   },
   userProfiles: {
     enabled: false,
-    cost: featureCosts.userProfiles.ZAR,
+    cost: featureCosts.userProfiles.avgZAR,
     maxCost: featureCosts.userProfiles.maxZAR,
     description: "View/edit profiles, avatars, role types",
     complexity: "low",
@@ -152,7 +214,7 @@ const initialFeatures = {
   },
   pushNotifications: {
     enabled: false,
-    cost: featureCosts.pushNotifications.ZAR,
+    cost: featureCosts.pushNotifications.avgZAR,
     maxCost: featureCosts.pushNotifications.maxZAR,
     description: "Local + cloud (Firebase), optional targeting",
     complexity: "medium",
@@ -160,7 +222,7 @@ const initialFeatures = {
   },
   messaging: {
     enabled: false,
-    cost: featureCosts.messaging.ZAR,
+    cost: featureCosts.messaging.avgZAR,
     maxCost: featureCosts.messaging.maxZAR,
     description: "1:1 or group chat, real-time (Firestore/Socket), simple UI",
     complexity: "high",
@@ -168,7 +230,7 @@ const initialFeatures = {
   },
   feedPosts: {
     enabled: false,
-    cost: featureCosts.feedPosts.ZAR,
+    cost: featureCosts.feedPosts.avgZAR,
     maxCost: featureCosts.feedPosts.maxZAR,
     description: "Scrollable feed, likes, comments, timestamps",
     complexity: "medium",
@@ -176,7 +238,7 @@ const initialFeatures = {
   },
   searchFilters: {
     enabled: false,
-    cost: featureCosts.searchFilters.ZAR,
+    cost: featureCosts.searchFilters.avgZAR,
     maxCost: featureCosts.searchFilters.maxZAR,
     description: "Basic fuzzy search, filters, categories",
     complexity: "medium",
@@ -184,7 +246,7 @@ const initialFeatures = {
   },
   geoMaps: {
     enabled: false,
-    cost: featureCosts.geoMaps.ZAR,
+    cost: featureCosts.geoMaps.avgZAR,
     maxCost: featureCosts.geoMaps.maxZAR,
     description: "Location picker, GPS tracking, Google Maps API",
     complexity: "high",
@@ -192,7 +254,7 @@ const initialFeatures = {
   },
   payments: {
     enabled: false,
-    cost: featureCosts.payments.ZAR,
+    cost: featureCosts.payments.avgZAR,
     maxCost: featureCosts.payments.maxZAR,
     description: "PayFast, Stripe, PayPal integration, checkout",
     complexity: "high",
@@ -200,7 +262,7 @@ const initialFeatures = {
   },
   ecommerceCart: {
     enabled: false,
-    cost: featureCosts.ecommerceCart.ZAR,
+    cost: featureCosts.ecommerceCart.avgZAR,
     maxCost: featureCosts.ecommerceCart.maxZAR,
     description: "Add to cart, quantity, total, checkout",
     complexity: "medium",
@@ -208,7 +270,7 @@ const initialFeatures = {
   },
   productListings: {
     enabled: false,
-    cost: featureCosts.productListings.ZAR,
+    cost: featureCosts.productListings.avgZAR,
     maxCost: featureCosts.productListings.maxZAR,
     description: "Upload/create, image + detail views",
     complexity: "medium",
@@ -216,7 +278,7 @@ const initialFeatures = {
   },
   bookingsCalendar: {
     enabled: false,
-    cost: featureCosts.bookingsCalendar.ZAR,
+    cost: featureCosts.bookingsCalendar.avgZAR,
     maxCost: featureCosts.bookingsCalendar.maxZAR,
     description: "Availability, time slot picker, simple logic",
     complexity: "medium",
@@ -224,7 +286,7 @@ const initialFeatures = {
   },
   adminDashboard: {
     enabled: false,
-    cost: featureCosts.adminDashboard.ZAR,
+    cost: featureCosts.adminDashboard.avgZAR,
     maxCost: featureCosts.adminDashboard.maxZAR,
     description: "View/edit users/data, moderate content",
     complexity: "high",
@@ -232,7 +294,7 @@ const initialFeatures = {
   },
   analytics: {
     enabled: false,
-    cost: featureCosts.analytics.ZAR,
+    cost: featureCosts.analytics.avgZAR,
     maxCost: featureCosts.analytics.maxZAR,
     description: "Firebase, Mixpanel, page tracking",
     complexity: "low",
@@ -240,7 +302,7 @@ const initialFeatures = {
   },
   cloudStorage: {
     enabled: false,
-    cost: featureCosts.cloudStorage.ZAR,
+    cost: featureCosts.cloudStorage.avgZAR,
     maxCost: featureCosts.cloudStorage.maxZAR,
     description: "Upload docs/images, S3 or Firebase storage",
     complexity: "medium",
@@ -248,7 +310,7 @@ const initialFeatures = {
   },
   uiuxPrototype: {
     enabled: false,
-    cost: featureCosts.uiuxPrototype.ZAR,
+    cost: featureCosts.uiuxPrototype.avgZAR,
     maxCost: featureCosts.uiuxPrototype.maxZAR,
     description: "High-fidelity Figma designs, interactive flows",
     complexity: "medium",
@@ -256,7 +318,7 @@ const initialFeatures = {
   },
   multiLanguage: {
     enabled: false,
-    cost: featureCosts.multiLanguage.ZAR,
+    cost: featureCosts.multiLanguage.avgZAR,
     maxCost: featureCosts.multiLanguage.maxZAR,
     description: "Translation setup, i18n config",
     complexity: "medium",
@@ -264,7 +326,7 @@ const initialFeatures = {
   },
   offlineMode: {
     enabled: false,
-    cost: featureCosts.offlineMode.ZAR,
+    cost: featureCosts.offlineMode.avgZAR,
     maxCost: featureCosts.offlineMode.maxZAR,
     description: "Local caching, retry logic",
     complexity: "high",
@@ -272,7 +334,7 @@ const initialFeatures = {
   },
   apiIntegrations: {
     enabled: false,
-    cost: featureCosts.apiIntegrations.ZAR,
+    cost: featureCosts.apiIntegrations.avgZAR,
     maxCost: featureCosts.apiIntegrations.maxZAR,
     description: "Connect to 3rd-party services (per integration)",
     complexity: "medium",
@@ -280,7 +342,7 @@ const initialFeatures = {
   },
   security2FA: {
     enabled: false,
-    cost: featureCosts.security2FA.ZAR,
+    cost: featureCosts.security2FA.avgZAR,
     maxCost: featureCosts.security2FA.maxZAR,
     description: "OTP, email verification, rate limiting",
     complexity: "medium",
@@ -288,7 +350,7 @@ const initialFeatures = {
   },
   userRoles: {
     enabled: false,
-    cost: featureCosts.userRoles.ZAR,
+    cost: featureCosts.userRoles.avgZAR,
     maxCost: featureCosts.userRoles.maxZAR,
     description: "Admin/staff/customer tier access",
     complexity: "medium",
@@ -340,6 +402,30 @@ const baseRates = {
   }
 };
 
+// Map feature keys to icons
+const featureIcons: Record<string, React.ReactNode> = {
+  authentication: <Shield className="w-5 h-5 text-emerald-500" />,
+  userProfiles: <User className="w-5 h-5 text-blue-500" />,
+  pushNotifications: <Bell className="w-5 h-5 text-yellow-500" />,
+  messaging: <MessageCircle className="w-5 h-5 text-pink-500" />,
+  feedPosts: <List className="w-5 h-5 text-indigo-500" />,
+  searchFilters: <Filter className="w-5 h-5 text-gray-500" />,
+  geoMaps: <MapPin className="w-5 h-5 text-red-500" />,
+  payments: <CreditCard className="w-5 h-5 text-green-700" />,
+  ecommerceCart: <ShoppingCart className="w-5 h-5 text-orange-500" />,
+  productListings: <Box className="w-5 h-5 text-purple-500" />,
+  bookingsCalendar: <Calendar className="w-5 h-5 text-cyan-500" />,
+  adminDashboard: <BarChart className="w-5 h-5 text-emerald-700" />,
+  analytics: <BarChart className="w-5 h-5 text-blue-700" />,
+  cloudStorage: <Cloud className="w-5 h-5 text-sky-500" />,
+  uiuxPrototype: <PenTool className="w-5 h-5 text-pink-700" />,
+  multiLanguage: <Globe className="w-5 h-5 text-green-500" />,
+  offlineMode: <WifiOff className="w-5 h-5 text-gray-700" />,
+  apiIntegrations: <Link className="w-5 h-5 text-indigo-700" />,
+  security2FA: <Shield className="w-5 h-5 text-orange-700" />,
+  userRoles: <Users className="w-5 h-5 text-purple-700" />
+};
+
 export const ProjectCalculator = () => {
   const [features, setFeatures] = useState(initialFeatures);
   const [screens, setScreens] = useState(1);
@@ -369,10 +455,15 @@ export const ProjectCalculator = () => {
   useEffect(() => {
     setFeatures(prev => {
       const updated = { ...prev };
-      Object.keys(updated).forEach(key => {
+      (Object.keys(updated) as (keyof typeof featureCosts)[]).forEach(key => {
         updated[key] = {
           ...updated[key],
-          cost: featureCosts[key as keyof typeof featureCosts][currency]
+          cost:
+            currency === 'ZAR'
+              ? featureCosts[key].avgZAR
+              : currency === 'USD'
+              ? featureCosts[key].avgUSD
+              : featureCosts[key].avgGBP
         };
       });
       return updated;
@@ -402,11 +493,10 @@ export const ProjectCalculator = () => {
     );
   };
 
-  const formatPriceRange = (min: number, max: number, curr: Currency): string => {
-    const minPrice = Math.round(min * exchangeRates[curr]);
-    const maxPrice = Math.round(max * exchangeRates[curr]);
-    return `${currencySymbols[curr]}${minPrice.toLocaleString()} - ${currencySymbols[curr]}${maxPrice.toLocaleString()}`;
-  };
+  // Count and sum selected features
+  const selectedFeatures = Object.values(features).filter(f => f.enabled);
+  const selectedFeaturesCount = selectedFeatures.length;
+  const selectedFeaturesTotal = selectedFeatures.reduce((sum, f) => sum + f.cost, 0);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -503,44 +593,54 @@ export const ProjectCalculator = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        {/* Selected Features Count and Total */}
+        <div className="flex items-center justify-between mb-8">
+          <span className="text-sm text-gray-700 dark:text-gray-300">
+            Selected Features: <span className="font-semibold">{selectedFeaturesCount}</span>
+          </span>
+          <span className="text-sm text-emerald-600 dark:text-emerald-400">
+            +{currencySymbols[currency]}{selectedFeaturesTotal.toLocaleString()}
+          </span>
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {Object.entries(features)
             .filter(([_, feature]) => 
               selectedComplexity.length === 0 || 
               selectedComplexity.includes(feature.complexity)
             )
             .map(([key, feature]) => (
-              <div key={key} className="group relative">
-                <motion.label 
-                  className="flex items-center justify-between p-3 rounded-lg border border-gray-200 
-                            dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 
-                            hover:border-emerald-500 dark:hover:border-emerald-500 
-                            hover:shadow-md transform hover:scale-[1.02] 
-                            transition-all duration-300 cursor-pointer"
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="flex items-center space-x-4">
-                    <input
-                      type="checkbox"
-                      checked={feature.enabled}
-                      onChange={() => setFeatures(prev => ({
-                        ...prev,
-                        [key]: { ...feature, enabled: !feature.enabled }
-                      }))}
-                      className="rounded border-gray-300 text-emerald-500 focus:ring-emerald-500"
-                    />
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-gray-700 dark:text-gray-300 capitalize">{key}</span>
-                        <span className="text-sm text-emerald-500">
-                          +{formatPriceRange(feature.cost, feature.maxCost, currency)}
-                        </span>
-                      </div>
-                      <span className="text-xs text-gray-500">{feature.timeEstimate}</span>
+              <motion.label
+                key={key}
+                className={`flex flex-col h-full overflow-hidden p-0 min-h-[220px] rounded-2xl border border-emerald-100 dark:border-emerald-900 bg-gradient-to-br from-emerald-50 via-white to-emerald-100 dark:from-gray-900 dark:via-gray-800 dark:to-emerald-950 shadow-lg transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-[1.04] ${feature.enabled ? 'ring-2 ring-emerald-400 scale-[1.05]' : ''}`}
+                whileHover={{ x: 5 }}
+              >
+                <div className="flex flex-col items-center p-6 pb-4">
+                  <div className="flex items-center w-full justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={feature.enabled}
+                        onChange={() => setFeatures(prev => ({
+                          ...prev,
+                          [key]: { ...feature, enabled: !feature.enabled }
+                        }))}
+                        className="w-5 h-5 rounded border-2 border-emerald-400 text-emerald-600 focus:ring-emerald-500 transition-all duration-200 shadow-sm"
+                      />
+                    </div>
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900 shadow-inner">
+                      {featureIcons[key]}
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <span className={`px-2 py-1 rounded-full text-xs ${
+                  <div className="w-full text-center mb-2">
+                    <span className="block text-lg font-bold text-gray-800 dark:text-white capitalize leading-tight">{key.replace(/([A-Z])/g, ' $1').toLowerCase()}</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-3 w-full mb-2">
+                    <span className="text-base font-semibold text-emerald-600 dark:text-emerald-400">
+                      +{currencySymbols[currency]}{feature.cost.toLocaleString()}
+                    </span>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                       feature.complexity === 'low' ? 'bg-green-100 text-green-700' :
                       feature.complexity === 'medium' ? 'bg-yellow-100 text-yellow-700' :
                       feature.complexity === 'high' ? 'bg-orange-100 text-orange-700' :
@@ -548,15 +648,26 @@ export const ProjectCalculator = () => {
                     }`}>
                       {feature.complexity}
                     </span>
+                    <span className="text-xs text-gray-500 dark:text-gray-300 font-medium">{feature.timeEstimate}</span>
                   </div>
-                </motion.label>
-                <div className="absolute left-0 right-0 -bottom-2 translate-y-full opacity-0 
-                              group-hover:opacity-100 transition-opacity duration-200 z-10
-                              bg-gray-900 text-white text-sm rounded-lg p-2 pointer-events-none">
-                  {feature.description}
+                  <div className="w-full border-t border-emerald-100 dark:border-emerald-900 my-2"></div>
+                  <div className="w-full text-xs text-gray-600 dark:text-gray-400 text-center mt-1">
+                    {feature.description}
+                  </div>
                 </div>
-              </div>
+              </motion.label>
             ))}
+        </div>
+
+        {/* Info about base price */}
+        <div className="flex items-center justify-center mt-6 mb-2">
+          <div className="relative group flex items-center gap-2">
+            <Info className="w-4 h-4 text-emerald-500" />
+            <span className="text-xs text-gray-500 cursor-pointer underline decoration-dotted group-hover:text-emerald-700 transition-colors">Why does the price start at {currencySymbols[currency]}{(baseRates.complexity[complexity][currency] + baseRates.screens[currency]).toLocaleString()}?</span>
+            <div className="absolute left-1/2 -translate-x-1/2 top-7 z-20 w-64 bg-gray-900 text-white text-xs rounded-lg p-3 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200">
+              The starting price includes the base cost for a simple project and one screen, even if no features are selected. This covers initial setup, architecture, and a basic app structure.
+            </div>
+          </div>
         </div>
 
         <motion.div 

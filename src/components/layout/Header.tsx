@@ -23,22 +23,27 @@ export function Header() {
     ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.9)"]
   );
 
+  // Toggle for showing Calculator in navigation
+  const showCalculatorNav = false;
+
   const navigationItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Packages', href: '/packages' },
+    { name: 'Project Examples', href: '/project-examples', icon: Camera, isNew: true },
     { 
       name: 'PRD Form', 
       href: '/prd', 
       icon: FileText,
       isNew: true 
     },
-    { 
+    // Only show Calculator if toggle is true
+    ...(showCalculatorNav ? [{ 
       name: 'Calculator', 
       href: '/calculator', 
       icon: Calculator,
       isNew: true 
-    },
+    }] : []),
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -112,11 +117,6 @@ export function Header() {
                     <span className="flex items-center space-x-2">
                       {item.icon && <item.icon className="w-4 h-4" />}
                       <span>{item.name}</span>
-                      {item.isNew && (
-                        <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-gradient-to-r from-emerald-500/20 to-blue-500/20 text-emerald-400 backdrop-blur-sm">
-                          New
-                        </span>
-                      )}
                     </span>
                   </Link>
                 ))}

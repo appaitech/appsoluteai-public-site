@@ -354,65 +354,12 @@ export function PRDFormPage() {
   };
 
   return (
-    <div className="min-h-screen py-20 bg-gradient-to-b from-white to-emerald-50 
+    <div className="min-h-screen py-24 bg-gradient-to-b from-white to-emerald-50 
                     dark:from-gray-900 dark:to-emerald-900/10 transition-colors duration-300">
-      <div className="fixed top-20 left-0 w-full bg-white/90 dark:bg-gray-800/90 
-                      backdrop-blur-md shadow-md z-40 transition-all duration-500">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between gap-2 md:gap-4">
-            {FORM_SECTIONS.map((section, index) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`group flex flex-col items-center transition-all duration-500 cursor-pointer
-                          px-2 py-1 rounded-lg
-                          ${currentSection === section.id
-                            ? 'text-emerald-500 scale-105 bg-emerald-50 dark:bg-emerald-900/20'
-                            : 'text-gray-400 hover:text-emerald-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10'}`}
-              >
-                <section.icon className={`w-5 h-5 transition-transform duration-500
-                                     ${currentSection === section.id ? 'transform scale-110' : 'group-hover:scale-105'}`} />
-                <span className="text-xs mt-1.5 font-medium whitespace-nowrap">{section.title}</span>
-                {index < FORM_SECTIONS.length - 1 && (
-                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
-                    <ArrowRight className="w-4 h-4 ml-4 opacity-30" />
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="fixed bottom-0 left-0 w-full bg-white/90 dark:bg-gray-800/90 
-                      backdrop-blur-md shadow-md z-40 transition-colors duration-300">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-lg font-semibold flex items-center">
-                <DollarSign className="w-5 h-5 text-emerald-500 mr-2" />
-                Estimated Cost Range
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                ${costEstimate.min.toLocaleString()} - ${costEstimate.max.toLocaleString()}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => {/* Add download handler */}}
-              className="btn-base bg-emerald-100 text-emerald-700 hover:bg-emerald-200"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              Download Estimate
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <AnimatedHeading 
           variant="gradient"
-          className="text-5xl md:text-6xl font-bold text-center mb-6 font-display tracking-normal"
+          className="text-5xl md:text-6xl font-bold text-center mb-12 font-display tracking-normal"
         >
           Project Requirements Document
         </AnimatedHeading>
@@ -420,20 +367,20 @@ export function PRDFormPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg 
-                     transition-colors duration-300"
+          className="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-10 shadow-lg 
+                     transition-colors duration-300 max-w-5xl mx-auto"
         >
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-16">
             {/* Section: Basic Information */}
-            <div ref={setSectionRef('basic')} className="space-y-6">
+            <div ref={setSectionRef('basic')} className="space-y-8">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Basic Information
               </AnimatedHeading>
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Client Name <span className="text-red-500">*</span>
@@ -467,7 +414,7 @@ export function PRDFormPage() {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Email <span className="text-red-500">*</span>
@@ -523,15 +470,15 @@ export function PRDFormPage() {
             </div>
 
             {/* Section: Project Overview */}
-            <div ref={setSectionRef('overview')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <div ref={setSectionRef('overview')} className="space-y-8 pt-16 border-t border-gray-200 dark:border-gray-700">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Project Overview
               </AnimatedHeading>
-
-              <div className="space-y-6">
+              
+              <div className="space-y-8">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     1.1 What do you want us to create? <span className="text-red-500">*</span>
@@ -613,43 +560,45 @@ export function PRDFormPage() {
               </div>
             </div>
 
-            {/* Features & Functionality Section */}
-            <div ref={setSectionRef('features')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            {/* Section: Features & Functionality */}
+            <div ref={setSectionRef('features')} className="space-y-8 pt-16 border-t border-gray-200 dark:border-gray-700">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Features & Functionality
               </AnimatedHeading>
-
-              {/* Key Features */}
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  3.1 What are the key features you want in the app? <span className="text-red-500">*</span>
-                </label>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {KEY_FEATURES.map((feature) => (
-                    <label
-                      key={feature.id}
-                      className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
-                               dark:border-gray-700 hover:border-emerald-500 cursor-pointer
-                               transition-colors duration-200"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={formData[feature.id as keyof typeof formData] as boolean}
-                        onChange={(e) => setFormData({ ...formData, [feature.id]: e.target.checked })}
-                        className="form-checkbox h-5 w-5 text-emerald-500 rounded
-                                 border-gray-300 dark:border-gray-600"
-                      />
-                      <span className="text-gray-700 dark:text-gray-300">{feature.label}</span>
-                    </label>
-                  ))}
+              
+              <div className="space-y-12">
+                {/* Key Features */}
+                <div className="space-y-6">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Key Features
+                  </label>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {KEY_FEATURES.map((feature) => (
+                      <label
+                        key={feature.id}
+                        className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
+                                 dark:border-gray-700 hover:border-emerald-500 cursor-pointer
+                                 transition-colors duration-200"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData[feature.id as keyof typeof formData] as boolean}
+                          onChange={(e) => setFormData({ ...formData, [feature.id]: e.target.checked })}
+                          className="form-checkbox h-5 w-5 text-emerald-500 rounded
+                                   border-gray-300 dark:border-gray-600"
+                        />
+                        <span className="text-gray-700 dark:text-gray-300">{feature.label}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
-                
+
                 {/* Custom Features */}
-                <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <div className="space-y-6">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
                     Other Features
                   </label>
                   <textarea
@@ -662,237 +611,241 @@ export function PRDFormPage() {
                     placeholder="Describe any additional features you need..."
                   />
                 </div>
-              </div>
 
-              {/* User Actions */}
-              <div className="space-y-4 mt-8">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  3.2 What are three things a logged-in user should be able to do? <span className="text-red-500">*</span>
-                </label>
-                <div className="space-y-4">
-                  {[1, 2, 3].map((num) => (
-                    <div key={num} className="space-y-2">
-                      <label className="block text-sm text-gray-600 dark:text-gray-400">
-                        Action {num}
-                      </label>
-                      <select
-                        value={formData[`userAction${num}` as keyof typeof formData] as string}
-                        onChange={(e) => setFormData({ ...formData, [`userAction${num}`]: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
-                                  bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                                  focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
-                        required
-                      >
-                        <option value="">Select an action...</option>
-                        {USER_ACTIONS.map((action) => (
-                          <option key={action} value={action}>{action}</option>
-                        ))}
-                      </select>
-                    </div>
-                  ))}
+                {/* User Actions */}
+                <div className="space-y-6">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    User Actions
+                  </label>
+                  <div className="space-y-6">
+                    {[1, 2, 3].map((num) => (
+                      <div key={num} className="space-y-2">
+                        <label className="block text-sm text-gray-600 dark:text-gray-400">
+                          Action {num}
+                        </label>
+                        <select
+                          value={formData[`userAction${num}` as keyof typeof formData] as string}
+                          onChange={(e) => setFormData({ ...formData, [`userAction${num}`]: e.target.value })}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                                    bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                                    focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
+                          required
+                        >
+                          <option value="">Select an action...</option>
+                          {USER_ACTIONS.map((action) => (
+                            <option key={action} value={action}>{action}</option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Similar Apps */}
-              <div className="space-y-4 mt-8">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  3.3 Are there any apps similar to what you want?
-                </label>
-                <textarea
-                  value={formData.similarApps}
-                  onChange={(e) => setFormData({ ...formData, similarApps: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
-                            bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                            focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
-                  rows={3}
-                  placeholder="List any competitor apps or similar solutions for reference..."
-                />
+                {/* Similar Apps */}
+                <div className="space-y-6">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Similar Apps
+                  </label>
+                  <textarea
+                    value={formData.similarApps}
+                    onChange={(e) => setFormData({ ...formData, similarApps: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                              bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                              focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
+                    rows={3}
+                    placeholder="List any competitor apps or similar solutions for reference..."
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Design & User Experience Section */}
-            <div ref={setSectionRef('design')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            {/* Section: Design & User Experience */}
+            <div ref={setSectionRef('design')} className="space-y-8 pt-16 border-t border-gray-200 dark:border-gray-700">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Design & User Experience
               </AnimatedHeading>
+              
+              <div className="space-y-12">
+                {/* Design Style */}
+                <div className="space-y-4">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Design Style
+                  </label>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {DESIGN_STYLES.map((style) => (
+                      <label
+                        key={style.id}
+                        className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
+                                 dark:border-gray-700 hover:border-emerald-500 cursor-pointer
+                                 transition-colors duration-200"
+                      >
+                        <input
+                          type="radio"
+                          name="designStyle"
+                          value={style.id}
+                          checked={formData.designStyle === style.id}
+                          onChange={(e) => setFormData({ ...formData, designStyle: e.target.value })}
+                          className="form-radio h-5 w-5 text-emerald-500
+                                   border-gray-300 dark:border-gray-600"
+                          required
+                        />
+                        <span className="text-gray-700 dark:text-gray-300">{style.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Design Style */}
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  4.1 Do you have a preferred design style? <span className="text-red-500">*</span>
-                </label>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {DESIGN_STYLES.map((style) => (
-                    <label
-                      key={style.id}
-                      className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
-                               dark:border-gray-700 hover:border-emerald-500 cursor-pointer
-                               transition-colors duration-200"
-                    >
+                {/* Brand Guidelines */}
+                <div className="space-y-4">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Brand Guidelines
+                  </label>
+                  <div className="flex items-center space-x-4">
+                    <label className="flex items-center space-x-2">
                       <input
                         type="radio"
-                        name="designStyle"
-                        value={style.id}
-                        checked={formData.designStyle === style.id}
-                        onChange={(e) => setFormData({ ...formData, designStyle: e.target.value })}
-                        className="form-radio h-5 w-5 text-emerald-500
-                                 border-gray-300 dark:border-gray-600"
+                        name="hasLogo"
+                        checked={formData.hasLogo}
+                        onChange={() => setFormData({ ...formData, hasLogo: true })}
+                        className="form-radio h-5 w-5 text-emerald-500"
                         required
                       />
-                      <span className="text-gray-700 dark:text-gray-300">{style.label}</span>
+                      <span>Yes (please provide)</span>
                     </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Brand Guidelines */}
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  4.2 Do you have a logo or brand guidelines? <span className="text-red-500">*</span>
-                </label>
-                <div className="flex items-center space-x-4">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="hasLogo"
-                      checked={formData.hasLogo}
-                      onChange={() => setFormData({ ...formData, hasLogo: true })}
-                      className="form-radio h-5 w-5 text-emerald-500"
-                      required
-                    />
-                    <span>Yes (please provide)</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="hasLogo"
-                      checked={!formData.hasLogo}
-                      onChange={() => setFormData({ ...formData, hasLogo: false })}
-                      className="form-radio h-5 w-5 text-emerald-500"
-                      required
-                    />
-                    <span>No, need assistance with branding</span>
-                  </label>
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="hasLogo"
+                        checked={!formData.hasLogo}
+                        onChange={() => setFormData({ ...formData, hasLogo: false })}
+                        className="form-radio h-5 w-5 text-emerald-500"
+                        required
+                      />
+                      <span>No, need assistance with branding</span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Technical & Platform Requirements */}
-            <div ref={setSectionRef('technical')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            {/* Section: Technical & Platform Requirements */}
+            <div ref={setSectionRef('technical')} className="space-y-8 pt-16 border-t border-gray-200 dark:border-gray-700">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Technical & Platform Requirements
               </AnimatedHeading>
+              
+              <div className="space-y-12">
+                {/* Platforms */}
+                <div className="space-y-4">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Platforms
+                  </label>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {PLATFORMS.map((platform) => (
+                      <label
+                        key={platform.id}
+                        className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
+                                 dark:border-gray-700 hover:border-emerald-500 cursor-pointer
+                                 transition-colors duration-200"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.platforms.includes(platform.id)}
+                          onChange={(e) => {
+                            const newPlatforms = e.target.checked
+                              ? [...formData.platforms, platform.id]
+                              : formData.platforms.filter(p => p !== platform.id);
+                            setFormData({ ...formData, platforms: newPlatforms });
+                          }}
+                          className="form-checkbox h-5 w-5 text-emerald-500 rounded"
+                          required
+                        />
+                        <span className="text-gray-700 dark:text-gray-300">{platform.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Platforms */}
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  5.1 Which platforms should the app be available on? <span className="text-red-500">*</span>
-                </label>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {PLATFORMS.map((platform) => (
-                    <label
-                      key={platform.id}
-                      className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
-                               dark:border-gray-700 hover:border-emerald-500 cursor-pointer
-                               transition-colors duration-200"
-                    >
+                {/* Offline Mode */}
+                <div className="space-y-4">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Offline Mode
+                  </label>
+                  <div className="flex items-center space-x-4">
+                    <label className="flex items-center space-x-2">
                       <input
-                        type="checkbox"
-                        checked={formData.platforms.includes(platform.id)}
-                        onChange={(e) => {
-                          const newPlatforms = e.target.checked
-                            ? [...formData.platforms, platform.id]
-                            : formData.platforms.filter(p => p !== platform.id);
-                          setFormData({ ...formData, platforms: newPlatforms });
-                        }}
-                        className="form-checkbox h-5 w-5 text-emerald-500 rounded"
+                        type="radio"
+                        name="offlineMode"
+                        checked={formData.offlineMode}
+                        onChange={() => setFormData({ ...formData, offlineMode: true })}
+                        className="form-radio h-5 w-5 text-emerald-500"
                         required
                       />
-                      <span className="text-gray-700 dark:text-gray-300">{platform.label}</span>
+                      <span>Yes</span>
                     </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Offline Mode */}
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  5.2 Should the app work offline? <span className="text-red-500">*</span>
-                </label>
-                <div className="flex items-center space-x-4">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="offlineMode"
-                      checked={formData.offlineMode}
-                      onChange={() => setFormData({ ...formData, offlineMode: true })}
-                      className="form-radio h-5 w-5 text-emerald-500"
-                      required
-                    />
-                    <span>Yes</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="offlineMode"
-                      checked={!formData.offlineMode}
-                      onChange={() => setFormData({ ...formData, offlineMode: false })}
-                      className="form-radio h-5 w-5 text-emerald-500"
-                      required
-                    />
-                    <span>No</span>
-                  </label>
-                </div>
-              </div>
-
-              {/* Third-party Integrations */}
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  5.3 Will the app need third-party integrations?
-                </label>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {INTEGRATIONS.map((integration) => (
-                    <label
-                      key={integration.id}
-                      className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
-                               dark:border-gray-700 hover:border-emerald-500 cursor-pointer
-                               transition-colors duration-200"
-                    >
+                    <label className="flex items-center space-x-2">
                       <input
-                        type="checkbox"
-                        checked={formData.thirdPartyIntegrations.includes(integration.id)}
-                        onChange={(e) => {
-                          const newIntegrations = e.target.checked
-                            ? [...formData.thirdPartyIntegrations, integration.id]
-                            : formData.thirdPartyIntegrations.filter(i => i !== integration.id);
-                          setFormData({ ...formData, thirdPartyIntegrations: newIntegrations });
-                        }}
-                        className="form-checkbox h-5 w-5 text-emerald-500 rounded"
+                        type="radio"
+                        name="offlineMode"
+                        checked={!formData.offlineMode}
+                        onChange={() => setFormData({ ...formData, offlineMode: false })}
+                        className="form-radio h-5 w-5 text-emerald-500"
+                        required
                       />
-                      <span className="text-gray-700 dark:text-gray-300">{integration.label}</span>
+                      <span>No</span>
                     </label>
-                  ))}
+                  </div>
+                </div>
+
+                {/* Third-party Integrations */}
+                <div className="space-y-4">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Third-party Integrations
+                  </label>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {INTEGRATIONS.map((integration) => (
+                      <label
+                        key={integration.id}
+                        className="flex items-center space-x-3 p-4 rounded-lg border border-gray-200 
+                                 dark:border-gray-700 hover:border-emerald-500 cursor-pointer
+                                 transition-colors duration-200"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.thirdPartyIntegrations.includes(integration.id)}
+                          onChange={(e) => {
+                            const newIntegrations = e.target.checked
+                              ? [...formData.thirdPartyIntegrations, integration.id]
+                              : formData.thirdPartyIntegrations.filter(i => i !== integration.id);
+                            setFormData({ ...formData, thirdPartyIntegrations: newIntegrations });
+                          }}
+                          className="form-checkbox h-5 w-5 text-emerald-500 rounded"
+                        />
+                        <span className="text-gray-700 dark:text-gray-300">{integration.label}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Timeline */}
-            <div ref={setSectionRef('timeline')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            {/* Section: Timeline */}
+            <div ref={setSectionRef('timeline')} className="space-y-8 pt-16 border-t border-gray-200 dark:border-gray-700">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Timeline
               </AnimatedHeading>
-
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              
+              <div className="space-y-8">
+                <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
                   6.1 What is your desired launch date? <span className="text-red-500">*</span>
                 </label>
                 <div className="grid md:grid-cols-3 gap-4">
@@ -919,18 +872,18 @@ export function PRDFormPage() {
               </div>
             </div>
 
-            {/* Security & Compliance */}
-            <div ref={setSectionRef('security')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            {/* Section: Security & Compliance */}
+            <div ref={setSectionRef('security')} className="space-y-8 pt-16 border-t border-gray-200 dark:border-gray-700">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Security & Compliance
               </AnimatedHeading>
-
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  7.1 Do you have any specific security requirements?
+              
+              <div className="space-y-8">
+                <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                  Security Requirements
                 </label>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
@@ -961,18 +914,18 @@ export function PRDFormPage() {
               </div>
             </div>
 
-            {/* Maintenance & Support */}
-            <div ref={setSectionRef('maintenance')} className="space-y-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+            {/* Section: Maintenance & Support */}
+            <div ref={setSectionRef('maintenance')} className="space-y-8 pt-16 border-t border-gray-200 dark:border-gray-700">
               <AnimatedHeading 
                 variant="gradient"
-                className="text-2xl md:text-3xl font-semibold"
+                className="text-2xl md:text-3xl font-semibold mb-8"
               >
                 Maintenance & Support
               </AnimatedHeading>
-
-              <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  8.1 Do you need ongoing support & maintenance after launch? <span className="text-red-500">*</span>
+              
+              <div className="space-y-8">
+                <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                  Maintenance Required
                 </label>
                 <div className="flex items-center space-x-4">
                   <label className="flex items-center space-x-2">
@@ -1002,13 +955,13 @@ export function PRDFormPage() {
             </div>
 
             {/* Submit Button */}
-            <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div className="pt-16 border-t border-gray-200 dark:border-gray-700">
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full btn-base bg-emerald-600 hover:bg-emerald-700 
-                         flex items-center justify-center space-x-2"
+                         flex items-center justify-center space-x-2 py-4"
               >
                 <Send className="w-5 h-5" />
                 <span>Submit Project Requirements</span>
@@ -1016,26 +969,14 @@ export function PRDFormPage() {
             </div>
           </form>
         </motion.div>
-      </div>
 
-      {showSuccessModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md mx-4"
-          >
-            {/* Success modal content */}
-          </motion.div>
-        </div>
-      )}
-
-      <div className="mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
-        <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
-          <Info className="w-5 h-5" />
-          <p className="text-sm">
-            This PRD will be prepared by AppsoluteAI's expert team based on your inputs.
-          </p>
+        <div className="mt-8 p-6 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl max-w-5xl mx-auto">
+          <div className="flex items-center space-x-3 text-emerald-600 dark:text-emerald-400">
+            <Info className="w-5 h-5 flex-shrink-0" />
+            <p className="text-sm">
+              This PRD will be prepared by AppsoluteAI's expert team based on your inputs.
+            </p>
+          </div>
         </div>
       </div>
     </div>

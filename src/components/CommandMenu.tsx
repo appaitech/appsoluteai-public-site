@@ -17,6 +17,9 @@ export function CommandMenu() {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
+  // Toggle for showing Calculator in command menu
+  const showCalculatorCommand = false;
+
   const pages = [
     {
       heading: 'Pages',
@@ -26,11 +29,12 @@ export function CommandMenu() {
           icon: Home,
           href: '/',
         },
-        {
+        // Only show Calculator if toggle is true
+        ...(showCalculatorCommand ? [{
           name: 'Calculator',
           icon: Calculator,
           href: '/calculator',
-        },
+        }] : []),
         {
           name: 'PRD Form',
           icon: FileText,
@@ -75,9 +79,12 @@ export function CommandMenu() {
                 <Command.Item onSelect={() => { document.location.href = 'mailto:contact@appsoluteai.dev'; }}>
                   Contact Support
                 </Command.Item>
-                <Command.Item onSelect={() => { /* Add your logic */ }}>
-                  Get Started
-                </Command.Item>
+                {/* Only show Get Started if Calculator is enabled */}
+                {showCalculatorCommand && (
+                  <Command.Item onSelect={() => { window.location.href = '/calculator'; setOpen(false); }}>
+                    Get Started
+                  </Command.Item>
+                )}
               </Command.Group>
             </Command.List>
           </div>
