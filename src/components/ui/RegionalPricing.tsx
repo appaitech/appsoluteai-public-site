@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Info, DollarSign, PoundSterling } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EnhancedCard, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './EnhancedCard';
 
@@ -7,16 +7,7 @@ interface PricingTier {
   name: string;
   description: string;
   features: string[];
-  prices: {
-    ZAR: number;
-    USD: number;
-    GBP: number;
-  };
-  recommendedFor: {
-    ZAR: string;
-    USD: string;
-    GBP: string;
-  };
+  recommendedFor: string;
 }
 
 const pricingTiers: PricingTier[] = [
@@ -29,16 +20,7 @@ const pricingTiers: PricingTier[] = [
       "Essential UI/UX design",
       "2-week delivery timeline"
     ],
-    prices: {
-      ZAR: 20000,   // R20,000
-      USD: 1000,    // $1,000
-      GBP: 800      // £800 (approximately equal to $1,000)
-    },
-    recommendedFor: {
-      ZAR: "South African startups and small businesses",
-      USD: "US-based startups and small businesses",
-      GBP: "UK-based startups and small businesses"
-    }
+    recommendedFor: "Startups that need to validate an idea quickly"
   },
   {
     name: "Professional Launch MVP",
@@ -50,16 +32,7 @@ const pricingTiers: PricingTier[] = [
       "API integration & documentation",
       "4-6 week delivery timeline"
     ],
-    prices: {
-      ZAR: 0,  // Quote based
-      USD: 0,  // Quote based
-      GBP: 0   // Quote based
-    },
-    recommendedFor: {
-      ZAR: "Established South African businesses",
-      USD: "Growing US companies",
-      GBP: "Established UK businesses"
-    }
+    recommendedFor: "Scale-ups preparing for a polished public launch"
   },
   {
     name: "Enterprise Scale",
@@ -71,24 +44,9 @@ const pricingTiers: PricingTier[] = [
       "24/7 priority support",
       "Custom timeline & roadmap"
     ],
-    prices: {
-      ZAR: 0,  // Quote based
-      USD: 0,  // Quote based
-      GBP: 0   // Quote based
-    },
-    recommendedFor: {
-      ZAR: "Large South African enterprises",
-      USD: "US enterprise organizations",
-      GBP: "UK enterprise organizations"
-    }
+    recommendedFor: "Enterprises that require bespoke architecture and governance"
   }
 ];
-
-const currencySymbols = {
-  ZAR: "R",
-  USD: "$",
-  GBP: "£"
-};
 
 const innovationCards = [
   {
@@ -127,55 +85,10 @@ const innovationCards = [
 ];
 
 export function RegionalPricing() {
-  const [currency, setCurrency] = useState<"ZAR" | "USD" | "GBP">("ZAR");
   const [showInfo, setShowInfo] = useState<number | null>(null);
-
-  const formatPrice = (price: number, curr: "ZAR" | "USD" | "GBP") => {
-    if (price === 0) {
-      return "Request Quote";
-    }
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: curr,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price);
-  };
-
-  const getButtonText = (tier: PricingTier) => {
-    if (tier.prices[currency] === 0) {
-      return "Request Quote";
-    }
-    return "Get Started";
-  };
 
   return (
     <div className="section-inner">
-      <div className="flex justify-center mb-8">
-        <div className="inline-flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
-          <button
-            onClick={() => setCurrency("ZAR")}
-            className={`btn-pro-secondary px-4 py-2 ${currency === "ZAR" ? "bg-white dark:bg-gray-700" : ""}`}
-          >
-            ZAR
-          </button>
-          <button
-            onClick={() => setCurrency("USD")}
-            className={`btn-pro-secondary px-4 py-2 ${currency === "USD" ? "bg-white dark:bg-gray-700" : ""}`}
-          >
-            <DollarSign className="w-4 h-4 inline" />
-            USD
-          </button>
-          <button
-            onClick={() => setCurrency("GBP")}
-            className={`btn-pro-secondary px-4 py-2 ${currency === "GBP" ? "bg-white dark:bg-gray-700" : ""}`}
-          >
-            <PoundSterling className="w-4 h-4 inline" />
-            GBP
-          </button>
-        </div>
-      </div>
-
       <div className="grid-pro">
         {pricingTiers.map((tier, index) => (
           <EnhancedCard key={tier.name} showHoverEffect={false}>
@@ -186,10 +99,15 @@ export function RegionalPricing() {
             
             <div className="mb-8">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-4xl font-bold bg-gradient-to-r from-emerald-500 to-teal-500 
-                                bg-clip-text text-transparent">
-                  {formatPrice(tier.prices[currency], currency)}
-                </span>
+                <div>
+                  <span className="text-3xl font-bold bg-gradient-to-r from-emerald-500 to-teal-500 
+                                  bg-clip-text text-transparent block">
+                    Price on Request
+                  </span>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Tailored quote following a quick discovery call
+                  </p>
+                </div>
                 <button
                   className="p-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 
                              rounded-lg transition-colors group"
@@ -210,7 +128,7 @@ export function RegionalPricing() {
                              rounded-lg text-sm border border-emerald-100 dark:border-emerald-800/30"
                   >
                     <p className="text-emerald-700 dark:text-emerald-300">
-                      Recommended for: {tier.recommendedFor[currency]}
+                      Recommended for: {tier.recommendedFor}
                     </p>
                   </motion.div>
                 )}
@@ -237,14 +155,10 @@ export function RegionalPricing() {
                 className="btn-pro-primary bg-gradient-to-r from-emerald-500 to-teal-500 
                            hover:from-emerald-600 hover:to-teal-600 w-full relative overflow-hidden group"
                 onClick={() => {
-                  if (tier.prices[currency] === 0) {
-                    window.location.href = '/contact';
-                  } else {
-                    window.location.href = '/checkout';
-                  }
+                  window.location.href = '/contact';
                 }}
               >
-                <span className="relative z-10">{getButtonText(tier)}</span>
+                <span className="relative z-10">Request Pricing</span>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.4),transparent_70%)] 
                               opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </button>
@@ -260,7 +174,7 @@ export function InnovationCards() {
   return (
     <div className="section-inner">
       <div className="grid-pro">
-        {innovationCards.map((card, index) => (
+        {innovationCards.map((card) => (
           <div 
             key={card.name} 
             className={`card-pro relative overflow-hidden flex flex-col

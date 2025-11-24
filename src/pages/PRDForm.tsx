@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { AnimatedHeading } from '@/components/ui/AnimatedHeading';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Send, FileText, Clock, DollarSign, List, Mail, Phone,
+  Send, FileText, Clock, List, Mail, Phone,
   CheckCircle, AlertCircle, ChevronDown, Sparkles
 } from 'lucide-react';
 import type { KeyboardEvent, ChangeEvent } from 'react';
@@ -21,11 +21,10 @@ type StepNumber = 1 | 2 | 3 | 4;
 
 const timelineOptions = ['1-3 months', '3-6 months', '6-12 months', '1+ year'] as const;
 const budgetRanges = [
-  'Under $10k',
-  '$10k - $25k',
-  '$25k - $50k',
-  '$50k - $100k',
-  '$100k+'
+  'Price on request — still exploring scope',
+  'Price on request — aligning internal approvals',
+  'Price on request — ready to begin soon',
+  'Price on request — enterprise engagement'
 ] as const;
 
 type TimelineOption = typeof timelineOptions[number];
@@ -197,7 +196,7 @@ export function PRDFormPage() {
                                 : 'border-gray-200 dark:border-gray-700 hover:border-emerald-500'
                               }`}
                   >
-                    <DollarSign className="w-5 h-5 mb-2 mx-auto" />
+                    <Sparkles className="w-5 h-5 mb-2 mx-auto" />
                     {range}
                   </button>
                 ))}

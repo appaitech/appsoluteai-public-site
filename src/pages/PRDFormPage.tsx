@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { 
   FileText, Send, Mail, Phone, Info, CheckCircle, 
   Globe, Smartphone, Server, Shield, Users, Settings, Palette, Clock,
-  Upload, AlertCircle, DollarSign, ArrowRight, Check,
+  Upload, AlertCircle, ArrowRight, Check,
   AlertTriangle, Download
 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -234,7 +234,6 @@ export function PRDFormPage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [formErrors, setFormErrors] = useState<string[]>([]);
-  const [costEstimate, setCostEstimate] = useState({ min: 0, max: 0 });
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const setSectionRef = (id: string) => (el: HTMLDivElement | null): void => {
@@ -288,26 +287,6 @@ export function PRDFormPage() {
         behavior: 'smooth'
       });
     }
-  };
-
-  const calculateEstimate = (data: PRDFormData) => {
-    let basePrice = 10000;
-    
-    // Add costs based on platforms
-    basePrice += data.platforms.length * 5000;
-    
-    // Add costs based on features
-    if (data.userAuthentication) basePrice += 3000;
-    if (data.paymentProcessing) basePrice += 4000;
-    // ... add other feature costs
-
-    // Add timeline factor
-    const timelineFactor = data.timeline === '1-3 months' ? 1.5 : 1;
-    
-    setCostEstimate({
-      min: basePrice * timelineFactor,
-      max: basePrice * timelineFactor * 1.5
-    });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -368,7 +347,8 @@ export function PRDFormPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-10 shadow-lg 
-                     transition-colors duration-300 max-w-5xl mx-auto"
+                     transition-colors duration-300 max-w-5xl mx-auto border border-emerald-500/20
+                     shadow-[0_0_35px_rgba(16,185,129,0.25)]"
         >
           <form onSubmit={handleSubmit} className="space-y-16">
             {/* Section: Basic Information */}

@@ -19,8 +19,6 @@ import { HeartsAnimation } from './components/ui/HeartsAnimation';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import { AnimatedHeading } from './components/ui/AnimatedHeading';
 import { ThemeProvider } from './providers/ThemeProvider';
-import { ProjectCalculator } from './components/ui/ProjectCalculator';
-import { TimelineVisualizer } from './components/ui/TimelineVisualizer';
 import { BrowserRouter as Router, Routes, Route, Navigate, Link as RouterLink } from 'react-router-dom';
 import { PRDFormPage } from './pages/PRDFormPage';
 import { NotFound } from './pages/NotFound';

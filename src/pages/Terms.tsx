@@ -93,13 +93,14 @@ export function Terms() {
 
               <h2>4. Payment Terms</h2>
               <p>
-                Payment terms are as follows:
+                All engagements are quoted on request after a discovery session and scope review.
+                We provide a written proposal outlining deliverables, milestones, and payment schedule.
               </p>
               <ul>
-                <li>50% upfront payment to commence work</li>
-                <li>Remaining payment upon project completion</li>
-                <li>Additional features or changes may incur extra costs</li>
-                <li>All prices are subject to applicable taxes</li>
+                <li>50% booking deposit once the proposal is approved</li>
+                <li>Remaining balance due on the agreed milestone or delivery date</li>
+                <li>Additional features or scope changes are quoted separately before work begins</li>
+                <li>Applicable taxes are added to the final approved quote</li>
               </ul>
 
               <h2>5. Contact Information</h2>

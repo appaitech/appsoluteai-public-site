@@ -23,7 +23,7 @@ export function Packages() {
                            border border-emerald-500/20"
               >
                 <span className="text-emerald-600 dark:text-emerald-400 font-medium">
-                  Flexible Pricing Plans
+                  Custom Quotes On Request
                 </span>
               </motion.div>
 
@@ -35,7 +35,8 @@ export function Packages() {
               </h1>
 
               <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                Transparent pricing for businesses of all sizes
+                Every engagement is priced on request after a collaborative discovery call.
+                Tell us about your goals and we’ll craft a tailored proposal.
               </p>
             </motion.div>
 
